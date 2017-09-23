@@ -6,15 +6,15 @@ require($_SERVER['DOCUMENT_ROOT'].'/parents-evening/server/config.php'); //Chang
 
 function showParents($conn)
 {
-	$pagination_URL = WEBURL.DOCROOT."pages/parents-evening/admin/";	
+	$pagination_URL = WEBURL.DOCROOT."pages/parents-evening/admin/";
 	$available_toggle = WEBURL.DOCROOT."scripts/parents-evening/admin/update-script.php";
-	
-	$sql = "SELECT * FROM parents_evening WHERE school_id = {$_SESSION['school_id']}";
+
+	$sql = "SELECT * FROM parents_evenings WHERE school_id = {$_SESSION['school_id']}";
 
 	$result = mysqli_query($conn, $sql);
 
 	$number_of_results  = mysqli_num_rows($result);
-	$results_per_page = 8;	
+	$results_per_page = 8;
 
 	$number_of_pages = ceil($number_of_results/$results_per_page);
 
@@ -22,11 +22,11 @@ function showParents($conn)
 	{
 		$page = $_GET['parents-evening-page'];
 		$this_page_first_result = ($page-1)*$results_per_page;
-		$sql = "SELECT * FROM parents_evening WHERE school_id = {$_SESSION['school_id']} ORDER BY evening_date DESC LIMIT $this_page_first_result, $results_per_page";
+		$sql = "SELECT * FROM parents_evenings WHERE school_id = {$_SESSION['school_id']} ORDER BY evening_date DESC LIMIT $this_page_first_result, $results_per_page";
 	}
 	else
 	{
-		$sql = "SELECT * FROM parents_evening WHERE school_id = {$_SESSION['school_id']} ORDER BY evening_date DESC LIMIT $results_per_page";
+		$sql = "SELECT * FROM parents_evenings WHERE school_id = {$_SESSION['school_id']} ORDER BY evening_date DESC LIMIT $results_per_page";
 		$page = 1;
 	}
 
@@ -54,7 +54,7 @@ function showParents($conn)
 		$record .= "</tr>";
 		echo $record;
 	}
-	
+
 	$record = "</tbody>";
 	$record .= "</table>";
 	echo $record;
@@ -71,7 +71,7 @@ function showParents($conn)
 			$record .= "<a class='page-link' href='$pagination_URL?parents-evening-page=$last_page'>";
 				$record .= "<span>&laquo;</span>";
 			$record .= "</a>";
-		$record .= "</li>";	
+		$record .= "</li>";
 	}
 
 	for ($page = 1;$page <= $number_of_pages; $page++)
@@ -89,7 +89,7 @@ function showParents($conn)
 			$record .= "</li>";
 		}
 	}
-	
+
 	if(isset($_GET['parents-evening-page']) && $_GET['parents-evening-page'] < $number_of_pages)
 	{
 		$record .= "<li class='page-item'>";
@@ -98,10 +98,10 @@ function showParents($conn)
 			$record .= "</a>";
 		$record .= "</li>";
 	}
-	
+
 	$record .= "</ul>";
 	$record .= "</nav>";
-	
+
 	echo $record;
 }
 ?>

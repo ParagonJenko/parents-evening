@@ -19,7 +19,7 @@ switch($table)
 		$columns = "status, forename, surname, username, email_address, school_id, password";
 		$values = "'status','','','','','',{$_SESSION['school_id']},{$password_hash}";
 		break;
-	case "parents_evening":
+	case "parents_evenings":
 		switch($_GET['current_availability'])
 		{
 			case "y":
