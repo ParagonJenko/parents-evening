@@ -4,13 +4,14 @@ session_start();
 // Includes the database configuration file.
 require($_SERVER['DOCUMENT_ROOT'].'/parents-evening/server/config.php'); //Change to where it is stored in your website.
 
+//
 $header_URL = "Location: ".WEBURL.DOCROOT."pages/parents-evening/admin/";
 
 $table = $_GET['table_name'];
 
 $password_string = '!@#$%*&abcdefghijklmnpqrstuwxyzABCDEFGHJKLMNPQRSTUWXYZ23456789';
 $password_random = substr(str_shuffle($password_string), 0, 12);
-	
+
 $password_hash = password_hash("abc123", PASSWORD_DEFAULT);
 
 echo $table;
@@ -18,7 +19,7 @@ echo $table;
 switch($table)
 {
 	case "users":
-		
+
 		if(isset($_POST['year_number']))
 		{
 			$year_number = "'{$_POST['year_number']}',";
