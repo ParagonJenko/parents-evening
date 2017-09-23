@@ -5,14 +5,7 @@ $delete_parents_evening_script_URL = WEBURL.DOCROOT."scripts/parents-evening/adm
 $add_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/add-script.php";
 $delete_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/delete-script.php";
 
-$add_admin_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/add-script.php?table_name=users";
-$delete_admin_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/delete-script.php?table_name=users";
-
-$add_teacher_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/add-script.php?table_name=users";
-$delete_teacher_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/delete-script.php?table_name=users";
-
-$add_student_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/add-script.php?table_name=users";
-$delete_student_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/delete-script.php?table_name=users";
+$admin_reset_password_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/reset-password.php";
 ?>
 
 <!-- Add Parents Evening Modal -->
@@ -252,6 +245,58 @@ $delete_student_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/delet
 
 					<div class="form-group">
 						<button type='submit' class='btn btn-success btn-block'>X</button>
+					</div>
+
+				</form>
+
+			</div>
+
+			<div class="modal-footer">
+
+				<button type="submit" class="btn btn-danger mr-auto" data-dismiss="modal"><i class="fa fa-remove"></i> Cancel</button>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<!-- Form Modal -->
+<div class="modal fade text-center" id="reset-password-form-modal">
+
+	<div class="modal-dialog">
+
+		<div class="modal-content">
+
+			<div class="modal-header">
+
+				<h4 class="modal-title"> Reset Password Form</h4>
+				<i class="fa fa-remove" data-dismiss="modal"></i>
+
+			</div>
+
+			<div class="modal-body">
+
+				<form role="form" id="reset-password-form" method="post" action="<?php echo $admin_reset_password_script_URL ?>">
+
+					<div class="form-group">
+						<select required class="form-control" name="id">
+							<?php
+							$sql = "SELECT * FROM users WHERE school_id = {$_SESSION['school_id']} ORDER BY status ASC";
+							$result = mysqli_query($conn, $sql);
+							while($row = mysqli_fetch_assoc($result))
+							{
+								$status = ucfirst($row['status']);
+								echo "<option value='{$row['id']}'>{$status} : {$row['username']} - {$row['forename']} {$row['surname']}</option>";
+							}
+							?>
+						</select>
+					</div>
+
+					<div class="form-group">
+						<button type='submit' class='btn btn-success btn-block'>Reset Password</button>
 					</div>
 
 				</form>
