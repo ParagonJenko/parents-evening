@@ -1,0 +1,23 @@
+--- FIRESTONE DESIGNS MODULAR SYSTEM ---
+    -- Designed by Alex Jenkinson --
+
+1. Open .htaccess and edit:
+"/YOURFILEPATH/pages/core-site/error/404.php"
+
+2. Open "server/config" and change DOCROOT to "/YOURPATH/"
+
+3. Open "server/config" and change WEBURL to your website URL.
+
+4. In "server/config" change your database connection variables to match what has been created.
+
+5. Using Find & Replace function to replace it to:
+"require($_SERVER['DOCUMENT_ROOT']."/YOURPATH/server/config.php");"
+NOTE - Ensure these are uploaded to the server as sometimes they may not be placed causing errors.
+
+6. Run ".initialsetup/core-site/database-setup" to create initial database.
+
+Website setup complete.
+
+USERS
+Root User / root_user@alex-jenkinson.co.uk / root12345
+Root Admin / root_admin@alex-jenkinson.co.uk / root12345
