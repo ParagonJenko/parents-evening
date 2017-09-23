@@ -33,7 +33,8 @@ switch($table)
 		$id = $_GET['id'];
 		break;
 	case "school_data":
-		$values = "school_name = {$_POST['school_name']}, school_address = '{$_POST['school_address']}', school_email_address = '{$_POST['school_email_address']}";
+		echo "School D";
+		$values = "school_name = '{$_POST['school_name']}', school_address = '{$_POST['school_address']}', school_email_address = '{$_POST['school_email_address']}'";
 		$id = $_GET['id'];
 		break;
 }
@@ -42,7 +43,7 @@ $sql = "UPDATE $table SET $values WHERE id = $id";
 
 echo $sql;
 
-/*if(mysqli_query($conn, $sql))
+if(mysqli_query($conn, $sql))
 {
 	// Success
 	// Insert record of this action into serverlog
@@ -71,6 +72,6 @@ else
 	header($header_URL);
 	// Exits the script
 	exit();
-}*/
+}
 
 ?>
