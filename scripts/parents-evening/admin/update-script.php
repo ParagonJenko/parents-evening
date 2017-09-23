@@ -16,7 +16,7 @@ $table = $_GET['table_name'];
 switch($table)
 {
 	case "user":
-		$columns = "status, forename, surname, username, yearnumber, email_address, school_id, password";
+		$columns = "status, forename, surname, username, email_address, school_id, password";
 		$values = "'status','','','','','',{$_SESSION['school_id']},{$password_hash}";
 		break;
 	case "parents_evening":
