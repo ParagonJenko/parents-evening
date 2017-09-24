@@ -1,8 +1,9 @@
-<?php 
+<?php
 // Allows session variables to be used.
 session_start();
 // Includes the database configuration file.
-require($_SERVER['DOCUMENT_ROOT']."/parents-evening/server/config.php");  
+require($_SERVER['DOCUMENT_ROOT']."/parents-evening/server/config.php");
+require($_SERVER['DOCUMENT_ROOT'].DOCROOT.'scripts/core-site/session/session_active.php');
 
 // Update Details URL
 $update_details_url = WEBURL.DOCROOT."scripts/core-site/account/updatedetails.php";
@@ -17,23 +18,23 @@ $update_details_url = WEBURL.DOCROOT."scripts/core-site/account/updatedetails.ph
 	<body>
 	<!-- Require navbar from specified file -->
 	<?php require($_SERVER['DOCUMENT_ROOT'].DOCROOT."includes/navbar.php");?>
-	
+
 	<?php require($_SERVER['DOCUMENT_ROOT'].DOCROOT."includes/errormessage.php");?>
-	
+
 	<?php
 	// Gets ID from session
 	$id = $_SESSION['userid'];
-		
+
 	// SQL statement to find the user
 	$sql_selectuser = "SELECT * FROM users WHERE id = '$id'";
 	$result = mysqli_query($conn, $sql_selectuser);
-		
+
 	//  Loop through all data given
 	$row = mysqli_fetch_assoc($result);
-	
+
 	$username = $row['username'];
 	$email = $row['email_address'];
-	
+
 	?>
 
 	<div class="card text-center">
@@ -91,7 +92,7 @@ $update_details_url = WEBURL.DOCROOT."scripts/core-site/account/updatedetails.ph
 							<label for="confirm_password" class="col-2 col-form-label">Re-Enter Password</label>
 							<div class="col-10">
 								<input class="form-control" type="password" id="confirmpassword" name="confirmpassword" placeholder="Re-enter Password">
-								
+
 							</div>
 						</div>
 						<input type="submit" class="btn btn-warning btn-block" name="change" value="Change Password">
@@ -100,11 +101,11 @@ $update_details_url = WEBURL.DOCROOT."scripts/core-site/account/updatedetails.ph
 			</div>
 		</div>
 	</div>
-	
+
 
 	<!-- Tab panes -->
-	
-	
+
+
 	<!-- Require footer from specified file -->
 	<?php require($_SERVER['DOCUMENT_ROOT'].DOCROOT."includes/footer.php");?>
 	</body>
@@ -112,4 +113,3 @@ $update_details_url = WEBURL.DOCROOT."scripts/core-site/account/updatedetails.ph
 
 <!-- Require modals for login/signup from specified file -->
 <?php require($_SERVER['DOCUMENT_ROOT'].DOCROOT."includes/modals.php");?>
-
