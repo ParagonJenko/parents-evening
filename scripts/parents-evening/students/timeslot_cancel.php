@@ -20,7 +20,7 @@ if(mysqli_query($conn, $sql_delete_appointment))
 {
 	// Success
 	// Insert record of this action into serverlog
-	$action = "{$user} has cancelled {$_POST['appointment_start']}:{$_POST['appointment_end']} at ID: $id";
+	$action = "{$user} has cancelled appointment where teacher $teacher_id";
 	$sql_serverlog = "INSERT INTO server_log (ip_address, user, action, location) VALUES ('$ipaddress', '$user', '$action', '$location')";
 	mysqli_query($conn, $sql_serverlog);
 
@@ -35,7 +35,7 @@ else
 {
 	// Fail
 	// Insert record of this action into serverlog
-	$action = "{$user} has failed to cancel {$_POST['appointment_start']}:{$_POST['appointment_end']} at ID: $id";
+	$action = "{$user} has failed to cancel appointment where teacher $teacher_id";
 	$sql_serverlog = "INSERT INTO server_log (ip_address, user, action, location) VALUES ('$ipaddress', '$user', '$action', '$location')";
 	mysqli_query($conn, $sql_serverlog);
 

@@ -25,7 +25,7 @@ require($_SERVER['DOCUMENT_ROOT']."/parents-evening/server/config.php");
 	<div class="container-fluid">
 
 		<?php
-		$sql = "SELECT * FROM parents_evenings WHERE school_id = {$_SESSION['school_id']} AND available = 'y' AND evening_date >= CURDATE() LIMIT 1";
+		$sql = "SELECT * FROM parents_evenings WHERE school_id = {$_SESSION['school_id']} AND available = 'y' AND evening_date >= CURDATE() ORDER BY evening_date ASC LIMIT 1";
 
 		$result = mysqli_query($conn, $sql);
 

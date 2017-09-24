@@ -27,7 +27,7 @@ INSERT INTO users (status, forename, surname, username, email_address, school_id
 
 ('admin', 'HallCross', 'Admin', 'hallcross_admin', 'hallx@hallcross.com', 1, '$passwordhash'), -- 9
 ('admin', 'BalbyCarr', 'Admin', 'balbycarr_admin', 'bca@balbycarr.org.uk', 2, '$passwordhash'), -- 10
-('admin', 'Outwood', 'Admin', 'balbycarr_admin', 'outwood@academy.com', 3, '$passwordhash'); -- 11
+('admin', 'Outwood', 'Admin', 'outwood_admin', 'outwood@academy.com', 3, '$passwordhash'); -- 11
 
 INSERT INTO teachers (user_id, school_id)
 VALUES
@@ -46,7 +46,7 @@ VALUES
 
 INSERT INTO parents_evenings (school_id, evening_date, start_time, end_time, available)
 VALUES
-(1, '2017-10-01', '16:00', '20:30', 'y'),
+(1, '2017-10-01', '15:00', '20:30', 'y'),
 (2, '2017-10-01', '17:00', '20:00', 'n'),
 (3, '2017-10-01', '18:00', '21:00', 'n');
 

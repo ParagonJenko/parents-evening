@@ -15,13 +15,11 @@ $sql_insert_appointments = "INSERT INTO appointments (teacher_id, parents_evenin
 							VALUES
 							({$_POST['teacher_id']},{$_POST['evening_id']},{$_POST['student_id']},'{$_POST['appointment_start']}','{$_POST['appointment_end']}')";
 
-echo $sql_insert_appointments;
-
 if(mysqli_query($conn, $sql_insert_appointments))
 {
 	// Success
 	// Insert record of this action into serverlog
-	$action = "{$user} has selected {$_POST['appointment_start']}:{$_POST['appointment_end']} at ID: $id";
+	$action = "{$user} has selected {$_POST['appointment_start']}-{$_POST['appointment_end']} at evening ID: {$_POST['evening_id']} for {$_POST['teacher_id']}";
 	$sql_serverlog = "INSERT INTO server_log (ip_address, user, action, location) VALUES ('$ipaddress', '$user', '$action', '$location')";
 	mysqli_query($conn, $sql_serverlog);
 
@@ -36,7 +34,7 @@ else
 {
 	// Fail
 	// Insert record of this action into serverlog
-	$action = "{$user} has failed to selected {$_POST['appointment_start']}:{$_POST['appointment_end']} at ID: $id";
+	$action = "{$user} has failed to selected {$_POST['appointment_start']}-{$_POST['appointment_end']} at evening ID: {$_POST['evening_id']} for {$_POST['teacher_id']}";
 	$sql_serverlog = "INSERT INTO server_log (ip_address, user, action, location) VALUES ('$ipaddress', '$user', '$action', '$location')";
 	mysqli_query($conn, $sql_serverlog);
 
