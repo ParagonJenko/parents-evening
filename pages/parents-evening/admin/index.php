@@ -19,7 +19,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/parents-evening/server/config.php'); //Chang
 		<!-- Require navbar from specified file -->
 		<?php require($_SERVER['DOCUMENT_ROOT'].DOCROOT.'includes/navbar.php'); ?>
 
-		<?php require($_SERVER['DOCUMENT_ROOT'].DOCROOT."includes/errormessage.php"); ?>
+		<?php require($_SERVER['DOCUMENT_ROOT'].DOCROOT."includes/messages.php"); ?>
 
 		<?php include($_SERVER['DOCUMENT_ROOT'].DOCROOT."scripts/parents-evening/admin/show-user.php"); ?>
 
