@@ -2,30 +2,36 @@
 $error = intval($_GET['error']);
 $error -= 1;
 
-$errorarray = array('An account with that email has been found.', 'Your query has failed, please contact an administrator.', 'Request method not recieved, please contact an administrator.', 'You have entered an incorrect password.', 'Access denied.', 'You have entered an incorrect email, please double check this is correct.');
+$reset_pass = $_GET['password_reset'];
+
+$errorarray = array(
+'An account with that email has been found.', // 0
+'Your query has failed, please contact an administrator.', // 1
+'Request method not recieved, please contact an administrator.', // 2
+'You have entered an incorrect password.', // 3
+'Access denied.', // 4
+'You have entered an incorrect email, please double check this is correct.', // 5
+'Password reset: '.$reset_pass // 6
+);
 
 $max = intval(count($errorarray));
 $min = 0;
 
 if(isset($_GET['error']))
 {
+	$record = "<div class='alert alert-danger alert-dismissible fade show w-100'>";
+		$record .= "<button type='button' class='close' data-dismiss='alert'>";
+			$record .= "<span>&times;</span>";
+		$record .= "</button>";
 	if(($min < $error) && ($error < $max))
 	{
-		echo "<div class='alert alert-danger alert-dismissible fade show'>
-			<button type='button' class='close' data-dismiss='alert'>
-				<span aria-hidden='true'>&times;</span>
-			</button>
-		  <p><strong>Oh snap! </strong>".$errorarray[$error]."</p>
-		</div>";
+		$record .= "<p><strong>Oh snap! </strong>".$errorarray[$error]."</p>";
 	}
 	else
 	{
-		echo "<div class='alert alert-danger alert-dismissible fade show'>
-			<button type='button' class='close' data-dismiss='alert'>
-				<span aria-hidden='true'>&times;</span>
-			</button>
-		  <p><strong>Oh snap! </strong>This doesn't seem to be a set error, please contact an administrator.</p>
-		</div>";
+		$record .= "<p><strong>Oh snap! </strong>This doesn't seem to be a set in our system error, please contact an administrator.</p>";
 	}
+	$record .= "</div>";
+	echo $record;
 }
 ?>
