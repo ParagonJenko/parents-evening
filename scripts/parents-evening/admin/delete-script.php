@@ -17,7 +17,7 @@ if(mysqli_query($conn, $sql))
 {
 	// Success
 	// Insert record of this action into serverlog
-	$action = "$table has been deleted at ID: $id";
+	$action = "$table has been deleted at ID: {$_POST['delete_id']}";
 	$sql_serverlog = "INSERT INTO server_log (ip_address, user, action, location) VALUES ('$ipaddress', '$user', '$action', '$location')";
 	mysqli_query($conn, $sql_serverlog);
 
@@ -32,7 +32,7 @@ else
 {
 	// Fail
 	// Insert record of this action into serverlog
-	$action = "$table has been failed to be deleted at ID: $id";
+	$action = "$table has been failed to be deleted at ID: {$_POST['delete_id']}";
 	$sql_serverlog = "INSERT INTO server_log (ip_address, user, action, location) VALUES ('$ipaddress', '$user', '$action', '$location')";
 	mysqli_query($conn, $sql_serverlog);
 

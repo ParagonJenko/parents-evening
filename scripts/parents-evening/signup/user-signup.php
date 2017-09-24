@@ -65,22 +65,59 @@ if($_SERVER['REQUEST_METHOD'] = "POST")
 			$password_hash = password_hash($password, PASSWORD_DEFAULT);
 
 			$sql_insert_user = "INSERT INTO users (status, forename, surname, username, password, email_address, school_id)
-			VALUES ('$status','$forename','$surname','$username','$password_hash','$email_address', $school_id)";
+			VALUES ('$status','$forename','$surname','$username','$password_hash','$email_address', $school_id);";
 
 			if(mysqli_query($conn, $sql_insert_user))
 			{
 				// Added to DB
-				// Insert record of this action into serverlog
-				$action = "User added to database";
-				$sql_serverlog = "INSERT INTO server_log (ip_address, user, action, location) VALUES ('$ipaddress', '$password', '$action', '$location')";
-				mysqli_query($conn, $sql_serverlog);
+        if($status == "teacher")
+        {
+          $last_id = mysqli_insert_id($conn);
+          $sql_insert_teacher = "INSERT INTO teachers (user_id, school_id) VALUES ($last_id, $school_id)";
 
-				// Closes the database connection
-				mysqli_close($conn);
-				// Sets the redirect location
-				header($header_url."?error=9");
-				// Exits the script
-				exit();
+          if(mysqli_query($conn, $sql_insert_teacher))
+          {
+            // Insert record of this action into serverlog
+    				$action = "Teacher added to database";
+    				$sql_serverlog = "INSERT INTO server_log (ip_address, user, action, location) VALUES ('$ipaddress', '$password', '$action', '$location')";
+    				mysqli_query($conn, $sql_serverlog);
+
+    				// Closes the database connection
+    				mysqli_close($conn);
+    				// Sets the redirect location
+    				header($header_url."?error=9");
+    				// Exits the script
+    				exit();
+          }
+          else
+          {
+            // Insert record of this action into serverlog
+    				$action = "Teacher failed to be added to database";
+    				$sql_serverlog = "INSERT INTO server_log (ip_address, user, action, location) VALUES ('$ipaddress', '$password', '$action', '$location')";
+    				mysqli_query($conn, $sql_serverlog);
+
+    				// Closes the database connection
+    				mysqli_close($conn);
+    				// Sets the redirect location
+    				header($header_url."?error=2");
+    				// Exits the script
+    				exit();
+          }
+        }
+        else
+        {
+          // Insert record of this action into serverlog
+  				$action = "Student added to database";
+  				$sql_serverlog = "INSERT INTO server_log (ip_address, user, action, location) VALUES ('$ipaddress', '$password', '$action', '$location')";
+  				mysqli_query($conn, $sql_serverlog);
+
+  				// Closes the database connection
+  				mysqli_close($conn);
+  				// Sets the redirect location
+  				header($header_url."?error=9");
+  				// Exits the script
+  				exit();
+        }
 			}
 			else
 			{
