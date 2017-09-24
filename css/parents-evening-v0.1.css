@@ -62,17 +62,17 @@
 
 /*ENTIRE SITE*/
 
-html 
+html
 {
 	position: relative;
 	min-height: 100%;
+	max-width: 100%;
 }
-body 
+body
 {
 	/* Margin bottom by footer height */
 	margin-bottom: 60px;
 	font-family: 'PT Sans', sans-serif;
-	min-width: 100%;
 }
 
 h1, h2, h3, h4, h5, h6
@@ -82,7 +82,7 @@ h1, h2, h3, h4, h5, h6
 
 /* STICKY FOOTER - REQUIRED */
 
-.footer 
+.footer
 {
 	position: absolute;
 	bottom: 0;
@@ -128,5 +128,5 @@ h1, h2, h3, h4, h5, h6
 }
 
 .table th {
-   text-align: center;   
+   text-align: center;
 }

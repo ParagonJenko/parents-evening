@@ -6,14 +6,14 @@ require($_SERVER['DOCUMENT_ROOT'].'/parents-evening/server/config.php'); //Chang
 
 function showUsers($conn, $status)
 {
-	$pagination_URL = WEBURL.DOCROOT."pages/parents-evening/admin/";	
+	$pagination_URL = WEBURL.DOCROOT."pages/parents-evening/admin/";
 
 	$sql = "SELECT * FROM users WHERE school_id = {$_SESSION['school_id']} AND status = '$status'";
 
 	$result = mysqli_query($conn, $sql);
 
 	$number_of_results  = mysqli_num_rows($result);
-	$results_per_page = 8;	
+	$results_per_page = 8;
 
 	$number_of_pages = ceil($number_of_results/$results_per_page);
 
@@ -57,13 +57,12 @@ function showUsers($conn, $status)
 					$record .= "<td>{$row['username']}</td>";
 					$record .= "<td>{$row['forename']}</td>";
 					$record .= "<td>{$row['surname']}</td>";
-					$record .= "<td>{$row['year_number']}</td>";
 				$record .= "</tr>";
 				break;
 		}
 		echo $record;
 	}
-	
+
 	$record = "</tbody>";
 	$record .= "</table>";
 	echo $record;
@@ -80,7 +79,7 @@ function showUsers($conn, $status)
 			$record .= "<a class='page-link' href='$pagination_URL?$status-page=$last_page'>";
 				$record .= "<span>&laquo;</span>";
 			$record .= "</a>";
-		$record .= "</li>";	
+		$record .= "</li>";
 	}
 
 	for ($page = 1;$page <= $number_of_pages; $page++)
@@ -98,7 +97,7 @@ function showUsers($conn, $status)
 			$record .= "</li>";
 		}
 	}
-	
+
 	if(isset($_GET[$status.'-page']) && $_GET[$status.'-page'] < $number_of_pages)
 	{
 		$record .= "<li class='page-item'>";
@@ -107,10 +106,10 @@ function showUsers($conn, $status)
 		$record .= "</a>";
 		$record .= "</li>";
 	}
-	
+
 	$record .= "</ul>";
 	$record .= "</nav>";
-	
+
 	echo $record;
 }
 ?>

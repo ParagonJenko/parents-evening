@@ -23,63 +23,32 @@ require($_SERVER['DOCUMENT_ROOT']."/parents-evening/server/config.php");
 	<?php require($_SERVER['DOCUMENT_ROOT'].DOCROOT."includes/errormessage.php"); ?>
 
 	<div class="container-fluid">
+		<div class="container-fluid">
 
-		<h1>Parents Evening System</h1>
-		<p>Welcome to a bespoke parent's evening system created for students by a student.</p>
-
-	</div>
-
-	<div class="container-fluid row">
-
-		<div class="col-md-6">
-
-			<h2>Why should schools use this system?</h2>
-
-			<p>Eliminates the need to waste valuable time on allocating times.</p>
-			<p>Automates the process of scheduling of your parent's evenings.</p>
-			<p>Only stores the bare basic details needed to performing its tasks.</p>
+			<h1>Parents Evening System</h1>
+			<p>Welcome to a bespoke parent's evening system created for students by a student.</p>
 
 		</div>
 
-		<div class="col-md-6">
+		<div class="container-fluid row">
 
-			<h2>Why should students use this system?</h2>
+			<div class="col-md-6">
 
-			<p>Tired of having less options because you have your teacher later than everyone else?</p>
-			<p>Want to be able to view all of your teachers schedule?</p>
-			<p>Would you like to never have to wait in a line?</p>
+				<h2>Why should schools use this system?</h2>
 
-		</div>
-
-	</div>
-
-	<div class="container-fluid">
-
-		<h3>Features</h3>
-
-		<div class="row">
-
-			<div class="col-md-4">
-
-				<h4>Student</h4>
-
-				<p>X</p>
+				<p>Eliminates the need to waste valuable time on allocating times.</p>
+				<p>Automates the process of scheduling of your parent's evenings.</p>
+				<p>Only stores the bare basic details needed to performing its tasks.</p>
 
 			</div>
 
-			<div class="col-md-4">
+			<div class="col-md-6">
 
-				<h4>Teachers</h4>
+				<h2>Why should students use this system?</h2>
 
-				<p>X</p>
-
-			</div>
-
-			<div class="col-md-4">
-
-				<h4>Admin</h4>
-
-				<p>X</p>
+				<p>Tired of having less options because you have your teacher later than everyone else?</p>
+				<p>Want to be able to view all of your teachers schedule?</p>
+				<p>Would you like to never have to wait in a line?</p>
 
 			</div>
 
@@ -87,12 +56,46 @@ require($_SERVER['DOCUMENT_ROOT']."/parents-evening/server/config.php");
 
 		<div class="container-fluid">
 
-			<h4>Technical</h4>
+			<h3>Features</h3>
 
-			<p>X</p>
+			<div class="row">
+
+				<div class="col-md-4">
+
+					<h4>Student</h4>
+
+					<p>X</p>
+
+				</div>
+
+				<div class="col-md-4">
+
+					<h4>Teachers</h4>
+
+					<p>X</p>
+
+				</div>
+
+				<div class="col-md-4">
+
+					<h4>Admin</h4>
+
+					<p>X</p>
+
+				</div>
+
+			</div>
+
+			<div class="container-fluid">
+
+				<h4>Technical</h4>
+
+				<p>X</p>
+
+			</div>
 
 		</div>
-
+		
 	</div>
 
 	<!-- Require footer from specified file -->
