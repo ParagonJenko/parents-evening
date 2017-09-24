@@ -1,27 +1,50 @@
-<?php 
+<?php
 // Allows session variables to be used.
 session_start();
 // Includes the database configuration file.
 require($_SERVER['DOCUMENT_ROOT'].'/parents-evening/server/config.php'); //Change to where it is stored in your website.
 
-$header_URL = "Location: ".WEBURL.DOCROOT."pages/parents-evening/student";
+// Set serverlog variables
+$ipaddress = $_SERVER['REMOTE_ADDR'];
+$user = $_SESSION['username'];
+$location = "timeslot-cancel.php";
 
-$class_id = $_GET['classid'];
+$header_URL = "Location: ".WEBURL.DOCROOT."pages/parents-evening/student/parents-evening.php?id={$_GET['id']}";
+
+$teacher_id = $_GET['teacherid'];
 $student_id = $_SESSION['userid'];
 
-$sql_delete_appointment = "DELETE FROM appointments WHERE class_id = $class_id AND student_id = $student_id";
+$sql_delete_appointment = "DELETE FROM appointments WHERE teacher_id = $teacher_id AND student_id = $student_id";
 
 if(mysqli_query($conn, $sql_delete_appointment))
 {
-	echo "Success";
+	// Success
+	// Insert record of this action into serverlog
+	$action = "{$user} has cancelled {$_POST['appointment_start']}:{$_POST['appointment_end']} at ID: $id";
+	$sql_serverlog = "INSERT INTO server_log (ip_address, user, action, location) VALUES ('$ipaddress', '$user', '$action', '$location')";
+	mysqli_query($conn, $sql_serverlog);
+
+	// Closes the database connection
+	mysqli_close($conn);
+	// Sets the redirect location
 	header($header_URL);
+	// Exits the script
 	exit();
 }
 else
 {
-	echo "Fail " . mysqli_error($conn);
+	// Fail
+	// Insert record of this action into serverlog
+	$action = "{$user} has failed to cancel {$_POST['appointment_start']}:{$_POST['appointment_end']} at ID: $id";
+	$sql_serverlog = "INSERT INTO server_log (ip_address, user, action, location) VALUES ('$ipaddress', '$user', '$action', '$location')";
+	mysqli_query($conn, $sql_serverlog);
+
+	// Closes the database connection
+	mysqli_close($conn);
+	// Sets the redirect location
 	header($header_URL);
+	// Exits the script
 	exit();
 }
-	
+
 ?>
