@@ -1,0 +1,22 @@
+[15-Sep-2017 19:46:56 Europe/London] PHP Fatal error:  Maximum execution time of 60 seconds exceeded in /home/ebfccbbe/public_html/parents-evening/pages/parents-evening/student/index.php on line 98
+[16-Sep-2017 16:22:15 Europe/London] PHP Fatal error:  Maximum execution time of 60 seconds exceeded in /home/ebfccbbe/public_html/parents-evening/pages/parents-evening/student/index.php on line 54
+[16-Sep-2017 16:23:15 Europe/London] PHP Fatal error:  Maximum execution time of 60 seconds exceeded in /home/ebfccbbe/public_html/parents-evening/pages/parents-evening/student/index.php on line 54
+[16-Sep-2017 16:24:15 Europe/London] PHP Fatal error:  Maximum execution time of 60 seconds exceeded in /home/ebfccbbe/public_html/parents-evening/pages/parents-evening/student/index.php on line 54
+[16-Sep-2017 16:25:16 Europe/London] PHP Fatal error:  Maximum execution time of 60 seconds exceeded in /home/ebfccbbe/public_html/parents-evening/pages/parents-evening/student/index.php on line 54
+[16-Sep-2017 16:26:16 Europe/London] PHP Fatal error:  Maximum execution time of 60 seconds exceeded in /home/ebfccbbe/public_html/parents-evening/pages/parents-evening/student/index.php on line 54
+[16-Sep-2017 19:28:50 Europe/London] PHP Catchable fatal error:  Object of class DateTime could not be converted to string in /home/ebfccbbe/public_html/parents-evening/pages/parents-evening/student/index.php on line 33
+[16-Sep-2017 19:29:45 Europe/London] PHP Catchable fatal error:  Object of class DateTime could not be converted to string in /home/ebfccbbe/public_html/parents-evening/pages/parents-evening/student/index.php on line 33
+[17-Sep-2017 18:38:21 Europe/London] PHP Fatal error:  Call to undefined function cancelbutton() in /home/ebfccbbe/public_html/parents-evening/pages/parents-evening/student/index.php on line 161
+[18-Sep-2017 17:45:42 Europe/London] PHP Fatal error:  Call to undefined function cancelButton() in /home/ebfccbbe/public_html/parents-evening/pages/parents-evening/student/index.php on line 155
+[18-Sep-2017 17:47:41 Europe/London] PHP Fatal error:  Call to undefined function checkTimes() in /home/ebfccbbe/public_html/parents-evening/pages/parents-evening/student/index.php on line 148
+[24-Sep-2017 00:39:54 Europe/London] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/ebfccbbe/public_html/parents-evening/pages/parents-evening/student/index.php on line 28
+[24-Sep-2017 00:40:27 Europe/London] PHP Parse error:  syntax error, unexpected '}' in /home/ebfccbbe/public_html/parents-evening/pages/parents-evening/student/index.php on line 35
+[24-Sep-2017 00:51:57 Europe/London] PHP Parse error:  syntax error, unexpected '{', expecting variable (T_VARIABLE) in /home/ebfccbbe/public_html/parents-evening/pages/parents-evening/student/parents-evening.php on line 137
+[24-Sep-2017 00:54:49 Europe/London] PHP Fatal error:  Uncaught exception 'Exception' with message 'DateTime::__construct() expects parameter 2 to be DateTimeZone, string given' in /home/ebfccbbe/public_html/parents-evening/pages/parents-evening/student/parents-evening.php:188
+Stack trace:
+#0 /home/ebfccbbe/public_html/parents-evening/pages/parents-evening/student/parents-evening.php(188): DateTime->__construct('', '1')
+#1 /home/ebfccbbe/public_html/parents-evening/pages/parents-evening/student/parents-evening.php(283): showClasses(Object(mysqli), 2)
+#2 {main}
+  thrown in /home/ebfccbbe/public_html/parents-evening/pages/parents-evening/student/parents-evening.php on line 188
+[24-Sep-2017 00:55:24 Europe/London] PHP Parse error:  syntax error, unexpected '$begin' (T_VARIABLE) in /home/ebfccbbe/public_html/parents-evening/pages/parents-evening/student/parents-evening.php on line 188
+[24-Sep-2017 00:55:31 Europe/London] PHP Parse error:  syntax error, unexpected '$begin' (T_VARIABLE) in /home/ebfccbbe/public_html/parents-evening/pages/parents-evening/student/parents-evening.php on line 188
