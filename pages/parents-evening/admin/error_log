@@ -13,3 +13,4 @@
 [23-Sep-2017 23:20:58 Europe/London] PHP Parse error:  syntax error, unexpected ''Password reset: '' (T_CONSTANT_ENCAPSED_STRING), expecting ')' in /home/ebfccbbe/public_html/parents-evening/includes/errormessage.php on line 14
 [23-Sep-2017 23:21:16 Europe/London] PHP Parse error:  syntax error, unexpected ''Password reset: '' (T_CONSTANT_ENCAPSED_STRING), expecting ')' in /home/ebfccbbe/public_html/parents-evening/includes/errormessage.php on line 14
 [23-Sep-2017 23:36:46 Europe/London] PHP Parse error:  syntax error, unexpected '$record' (T_VARIABLE) in /home/ebfccbbe/public_html/parents-evening/includes/errormessage.php on line 23
+[24-Sep-2017 11:58:40 Europe/London] PHP Fatal error:  Call to undefined function showSchool() in /home/ebfccbbe/public_html/parents-evening/pages/parents-evening/admin/index.php on line 84
