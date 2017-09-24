@@ -3,6 +3,9 @@
 session_start();
 // Includes the database configuration file.
 require($_SERVER['DOCUMENT_ROOT'].'/parents-evening/server/config.php'); //Change to where it is stored in your website.
+
+$add_student_teacher_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/add-script.php?table_name=students";
+$remove_student_teacher_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/delete-script.php?table_name=students";
 ?>
 
 <!-- TEMPLATE DESIGNED BY ALEX JENKINSON -->
@@ -60,6 +63,19 @@ require($_SERVER['DOCUMENT_ROOT'].'/parents-evening/server/config.php'); //Chang
 
 					</li>
 
+					<li class="nav-item dropdown">
+
+						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-address-book"></i> Teachers</a>
+
+						<div class="dropdown-menu text-center w-100">
+
+							<a class="dropdown-item" id="v-pills-add-student-teacher-tab" data-toggle="pill" href="#v-pills-add-student-teacher">Add Students to Teacher</a>
+
+							<a class="dropdown-item" id="v-pills-remove-student-teacher-tab" data-toggle="pill" href="#v-pills-remove-student-teacher">Remove Students from Teacher</a>
+
+						</div>
+
+					</li>
 
 				</ul>
 
@@ -235,6 +251,128 @@ require($_SERVER['DOCUMENT_ROOT'].'/parents-evening/server/config.php'); //Chang
 								</thead>
 								<tbody>
 								<?php showUsers($conn, "student") ?>
+
+						</div>
+
+					</div>
+
+					<div class="tab-pane fade" id="v-pills-add-student-teacher">
+
+						<div class="container-fluid">
+
+							<h1>Add Student from Teacher</h1>
+
+							<form method="post" action="<?php echo $add_student_teacher_script_URL ?>">
+
+								<div class="row">
+
+									<div class="form-group col-6">
+
+										<label for="teacher_id">Teacher</label>
+										<select class="form-control" name="teacher_id">
+											<?php
+												$sql_select_teacher = "SELECT * FROM users WHERE status  = 'teacher' AND school_id = {$_SESSION['school_id']}";
+
+												$result = mysqli_query($conn, $sql_select_teacher);
+
+												while($row = mysqli_fetch_assoc($result))
+												{
+													$record = "<option value='{$row['id']}'>{$row['forename']} {$row['surname']}</option>";
+													echo $record;
+												}
+										 	?>
+										</select>
+
+									</div>
+
+									<div class="form-group col-6">
+
+										<label for="student_id">Student</label>
+										<select class="form-control" name="student_id">
+											<?php
+												$sql_select_student = "SELECT * FROM users WHERE status  = 'student' AND school_id = {$_SESSION['school_id']}";
+
+												$result = mysqli_query($conn, $sql_select_student);
+
+												while($row = mysqli_fetch_assoc($result))
+												{
+													$record = "<option value='{$row['id']}'>{$row['forename']} {$row['surname']}</option>";
+													echo $record;
+												}
+											?>
+										</select>
+
+									</div>
+
+								</div>
+
+								<div class="form-group">
+
+									<button type="submit" class="btn btn-warning btn-block">Add Student to Class</button>
+
+								</div>
+
+							</form>
+
+						</div>
+
+					</div>
+
+					<div class="tab-pane fade" id="v-pills-remove-student-teacher">
+
+						<div class="container-fluid">
+
+							<h1>Remove Student from Teacher</h1>
+
+							<form method="post" action="<?php echo $remove_student_teacher_script_URL ?>">
+
+								<div class="form-group">
+
+									<label for="student_table_id">Student - Teacher Relationship to Remove</label>
+									<select class="form-control" name="delete_id">
+										<?php
+											$sql_select_student = "SELECT students.*, users.forename, users.surname
+											FROM students
+											INNER JOIN users
+											ON students.user_id = users.id
+											WHERE users.school_id = {$_SESSION['school_id']}";
+
+											$result = mysqli_query($conn, $sql_select_student);
+
+											while($row = mysqli_fetch_assoc($result))
+											{
+												$student_id = $row['id'];
+												$student_name = $row['forename'] . " " . $row['surname'];
+
+												$sql_select_teacher = "SELECT students.*, users.forename, users.surname
+												FROM students
+												INNER JOIN teachers
+												ON students.teacher_id = teachers.id
+												INNER JOIN users
+												ON teachers.user_id = users.id
+												WHERE users.school_id = {$_SESSION['school_id']} AND students.id = {$student_id}";
+
+												$result_teacher = mysqli_query($conn, $sql_select_teacher);
+
+												$row_teacher = mysqli_fetch_assoc($result_teacher);
+
+												$teacher_name = $row_teacher['forename'] . " " . $row_teacher['surname'];
+
+												$record = "<option value='{$student_id}'>{$student_name} <-> {$teacher_name}</option>";
+												echo $record;
+											}
+										?>
+									</select>
+
+								</div>
+
+								<div class="form-group">
+
+									<button type="submit" class="btn btn-warning btn-block">Remove Student from Class</button>
+
+								</div>
+
+							</form>
 
 						</div>
 

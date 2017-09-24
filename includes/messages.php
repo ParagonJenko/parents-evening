@@ -30,6 +30,19 @@ $message_array_types = array(
 'danger' // 10
 );
 
+$message_array_prefix = array (
+	'Oh snap!', // 1
+	'Uh oh!', // 2
+	'We are sorry,', // 3
+	'Oops!', // 4
+	'Oh no!', // 5
+	'Sorry,', // 6
+	'Yay!', // 7
+	'Store this safely!', // 8
+	'Wooh!', // 9
+	'Oh no!' // 10
+);
+
 $max = intval(count($message_array));
 $min = 0;
 
@@ -41,7 +54,7 @@ if(isset($_GET['error']))
 		$record .= "</button>";
 	if(($min < $error) && ($error < $max))
 	{
-		$record .= "<p><strong>Oh snap! </strong>".$message_array[$error]."</p>";
+		$record .= "<p><strong>{$message_array_prefix[$error]} </strong>{$message_array[$error]}</p>";
 	}
 	else
 	{
