@@ -11,7 +11,6 @@ $header_url = "Location: ".WEBURL.DOCROOT;
 // Set serverlog variables
 $ipaddress = $_SERVER['REMOTE_ADDR'];
 $user = $_SESSION['username'];
-// $user = $_SESSION['username'];
 $location = "session_user.php";
 
 $user_status = $_SESSION['status'];
@@ -23,15 +22,6 @@ if($user_status == $status_needed)
 	$action = "Status accepted.";
 	$sql_serverlog = "INSERT INTO serverlog (ipaddress, user, action, location) VALUES ('$ipaddress', '$user', '$action', '$location')";
 	mysqli_query($conn, $sql_serverlog);
-
-	// Closes the database connection
-	mysqli_close($conn);
-
-	// Sets the redirect location
-	header($header_url);
-
-	// Exits the script
-	exit();
 }
 else
 {
@@ -42,10 +32,8 @@ else
 
 	// Closes the database connection
 	mysqli_close($conn);
-
 	// Sets the redirect location
 	header($header_url."?error=6");
-	
 	// Exits the script
 	exit();
 }

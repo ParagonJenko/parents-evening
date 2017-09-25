@@ -2,15 +2,15 @@
 // Activate session variables
 session_start();
 
-// Require database  
-require($_SERVER['DOCUMENT_ROOT']."/parents-evening/server/config.php");  
+// Require database
+require($_SERVER['DOCUMENT_ROOT']."/parents-evening/server/config.php");
 
 // Define where redirect is going.
 $header_url = "Location: ".WEBURL.DOCROOT;
 
 // Set serverlog variables
 $ipaddress = $_SERVER['REMOTE_ADDR'];
-$user = $_SESSION['email'];
+$user = $_SESSION['username'];
 // $user = $_SESSION['username'];
 $location = "session_admin.php";
 
@@ -23,13 +23,6 @@ if($user_status == $status_needed)
 	$action = "Status accepted.";
 	$sql_serverlog = "INSERT INTO serverlog (ipaddress, user, action, location) VALUES ('$ipaddress', '$user', '$action', '$location')";
 	mysqli_query($conn, $sql_serverlog);
-	
-	// Closes the database connection
-	mysqli_close($conn);
-	// Sets the redirect location
-	header($header_url);
-	// Exits the script
-	exit();
 }
 else
 {
@@ -37,7 +30,7 @@ else
 	$action = "Status declined.";
 	$sql_serverlog = "INSERT INTO serverlog (ipaddress, user, action, location) VALUES ('$ipaddress', '$user', '$action', '$location')";
 	mysqli_query($conn, $sql_serverlog);
-	
+
 	// Closes the database connection
 	mysqli_close($conn);
 	// Sets the redirect location
