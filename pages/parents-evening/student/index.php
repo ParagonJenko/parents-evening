@@ -4,6 +4,7 @@ session_start();
 
 // Includes the database configuration file.
 require($_SERVER['DOCUMENT_ROOT']."/parents-evening/server/config.php");
+require($_SERVER['DOCUMENT_ROOT'].DOCROOT.'scripts/core-site/session/session_student.php');
 ?>
 
 <!-- TEMPLATE DESIGNED BY ALEX JENKINSON -->
@@ -36,7 +37,7 @@ require($_SERVER['DOCUMENT_ROOT']."/parents-evening/server/config.php");
 		?>
 
 		<h1>Your Next Parents Evening</h1>
-		<p class="form-text">This is your next parents evening:
+		<p class="form-text">This is your next parents evening date:
 			 <?php echo $record; ?></p>
 
 
