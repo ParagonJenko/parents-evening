@@ -18,8 +18,7 @@ $update_details_url = WEBURL.DOCROOT."scripts/core-site/account/updatedetails.ph
 	<body>
 	<!-- Require navbar from specified file -->
 	<?php require($_SERVER['DOCUMENT_ROOT'].DOCROOT."includes/navbar.php");?>
-
-	<?php require($_SERVER['DOCUMENT_ROOT'].DOCROOT."includes/errormessage.php");?>
+	<?php require($_SERVER['DOCUMENT_ROOT'].DOCROOT."includes/messages.php");?>
 
 	<?php
 	// Gets ID from session

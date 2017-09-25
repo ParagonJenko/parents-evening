@@ -21,7 +21,7 @@ require($_SERVER['DOCUMENT_ROOT'].DOCROOT.'scripts/core-site/session/session_stu
 	<!-- Require navbar from specified file -->
 	<?php require($_SERVER['DOCUMENT_ROOT'].DOCROOT."includes/navbar.php"); ?>
 
-	<?php require($_SERVER['DOCUMENT_ROOT'].DOCROOT."includes/errormessage.php"); ?>
+	<?php require($_SERVER['DOCUMENT_ROOT'].DOCROOT."includes/messages.php"); ?>
 
 	<div class="container-fluid">
 

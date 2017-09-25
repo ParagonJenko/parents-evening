@@ -7,12 +7,27 @@ require($_SERVER['DOCUMENT_ROOT']."/parents-evening/server/config.php");
 // Hash Default Root Pass
 $passwordhash = password_hash("root1234", PASSWORD_DEFAULT);
 
+function referral_random()
+{
+	$referral_string = 'abcdefghijklmnpqrstuwxyzABCDEFGHJKLMNPQRSTUWXYZ23456789';
+	$referral_random = substr(str_shuffle($referral_string), 0, 12);
+	return $referral_random;
+}
+
+$referral_1 = referral_random();
+$referral_2 = referral_random();
+$referral_3 = referral_random();
+
+$teacher_code_1 = referral_random();
+$teacher_code_2 = referral_random();
+$teacher_code_3 = referral_random();
+
 // SQL to create users table
-$sql_statement = "INSERT INTO school_data (school_name, school_address, school_email_address)
+$sql_statement = "INSERT INTO school_data (school_name, school_address, school_email_address, school_referral, school_teacher_code)
 VALUES
-('Hall Cross Academy','Thorne Rd, Doncaster DN1 2HY','hallx@hallcross.com'),
-('Balby Carr Academy','Weston Rd, Doncaster DN4 8ND','bca@balbycarr.org.uk'),
-('Outwood Academy','Armthorpe Rd, Doncaster DN2 5QD','outwood@academy.com');
+('Hall Cross Academy','Thorne Rd, Doncaster DN1 2HY','hallx@hallcross.com', '$referral_1', '$teacher_code_1'),
+('Balby Carr Academy','Weston Rd, Doncaster DN4 8ND','bca@balbycarr.org.uk', '$referral_2', '$teacher_code_2'),
+('Outwood Academy','Armthorpe Rd, Doncaster DN2 5QD','outwood@academy.com', '$referral_3', '$teacher_code_3');
 
 INSERT INTO users (status, forename, surname, username, email_address, school_id, password) VALUES
 ('student', 'Sarah', 'Brains', 'sbrains', 'sbrains@student.com', 1, '$passwordhash'), -- 1

@@ -46,6 +46,26 @@ function showSchool($conn)
 
         $record .= "</div>";
 
+        $record .= "<div class='form-group row'>";
+
+            $record .= "<label for='school_referral_code' class='col-2 col-form-label'>School Referral Code</label>";
+
+            $record .= "<div class='col-10'>";
+                $record .= "<input type='text' readonly class='form-control' name='school_referral_code' value='{$row['school_referral']}'>";
+            $record .= "</div>";
+
+        $record .= "</div>";
+
+        $record .= "<div class='form-group row'>";
+
+            $record .= "<label for='school_teacher_code' class='col-2 col-form-label'>School Email Address</label>";
+
+            $record .= "<div class='col-10'>";
+                $record .= "<input type='text' readonly class='form-control' name='school_teacher_code' value='{$row['school_teacher_code']}'>";
+            $record .= "</div>";
+
+        $record .= "</div>";
+
         $record .= "<button type='submit' class='btn btn-success btn-block'>Update School Details</button>";
 
     $record .= "</form>";

@@ -22,7 +22,7 @@ $choose_timeslot_ajax_URL = WEBURL.DOCROOT."scripts/parents-evening/students/tim
 		<!-- Require navbar from specified file -->
 		<?php require($_SERVER['DOCUMENT_ROOT'].DOCROOT.'includes/navbar.php'); ?>
 
-		<?php require($_SERVER['DOCUMENT_ROOT'].DOCROOT."includes/errormessage.php"); ?>
+		<?php require($_SERVER['DOCUMENT_ROOT'].DOCROOT."includes/messages.php"); ?>
 
 		<h1>Teacher Schedule</h1>
 

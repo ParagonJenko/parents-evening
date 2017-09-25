@@ -2,8 +2,11 @@
 // Login Script URL
 $login_script_URL = WEBURL.DOCROOT."scripts/core-site/account/login.php";
 
-// Signup Script URL
-$signup_script_URL = WEBURL.DOCROOT."scripts/core-site/account/signup.php";
+// School Signup Script URL
+$school_signup_script_URL = WEBURL.DOCROOT."scripts/parents-evening/signup/school-signup.php";
+
+// User Signup Script URL
+$user_signup_script_URL = WEBURL.DOCROOT."scripts/parents-evening/signup/user-signup.php";
 ?>
 
 <!-- Login Modal -->
@@ -55,69 +58,54 @@ $signup_script_URL = WEBURL.DOCROOT."scripts/core-site/account/signup.php";
 			<div class="modal-footer">
 
 				<button type="submit" class="btn btn-danger mr-auto" data-dismiss="modal"><i class="fa fa-remove"></i> Cancel</button>
-				<a class="btn btn-success" data-toggle='modal' href='#signup-modal' data-dismiss="modal">Sign up here!  <i class="fa fa-id-card-o"></i></a>
-
+				<a class="btn btn-success" data-toggle='modal' href='#school-signup-form-modal' data-dismiss="modal">Sign up as a school  <i class="fa fa-id-card-o"></i></a>
+				<a class="btn btn-success" data-toggle='modal' href='#user-signup-form-modal' data-dismiss="modal">Sign up as a user  <i class="fa fa-id-card-o"></i></a>
 			</div>
 		</div>
 	</div>
 </div>
 
-<!-- Signup Modal -->
-<div class="modal fade text-center" id="signup-modal">
+<!--School Signup Form Modal -->
+<div class="modal fade text-center" id="school-signup-form-modal">
+
 	<div class="modal-dialog">
-		<!-- Modal content-->
+
 		<div class="modal-content">
 
 			<div class="modal-header">
 
-				<h4 class="modal-title"><i class="fa fa-lock"></i> Sign Up</h4>
+				<h4 class="modal-title"> School Signup Form</h4>
 				<i class="fa fa-remove" data-dismiss="modal"></i>
 
 			</div>
 
-			<div class="modal-body text-center">
+			<div class="modal-body">
 
-				<form role="form" id="signupform" method="post" action="<?php echo $signup_script_URL; ?>">
-					<div class="form-group row">
-						<label for="fullname" class="col-4 col-form-label">Full Name</label>
-						<div class="col-8">
-							<input required type="text" class="form-control" name="fullname" placeholder="John Doe">
-						</div>
+				<form role="form" id="school-signup-form" method="post" action="<?php echo $school_signup_script_URL; ?>">
+
+					<div class="form-group">
+						<label for="school_name">School Name</label>
+						<input required type="text" class="form-control" name="school_name">
 					</div>
 
-					<div class="form-group row">
-						<label for="username" class="col-4 col-form-label">Username</label>
-						<div class="col-8">
-							<input required type="text" class="form-control" name="username">
-						</div>
+					<div class="form-group">
+						<label for="school_address">School Address</label>
+						<input required type="text" class="form-control" name="school_address">
 					</div>
 
-					<div class="form-group row">
-						<label for="dateofbirth" class="col-4 col-form-label">Date of Birth</label>
-						<div class="col-8">
-							<input required type="date" class="form-control" name="dateofbirth" min="1900-01-01" max="<?php echo date("Y-m-d"); ?>">
-						</div>
+					<div class="form-group">
+						<label for="school_email_address">School Email Address</label>
+						<input required type="email" class="form-control" name="school_email_address">
 					</div>
 
-					<div class="form-group row">
-						<label for="emailaddress" class="col-4 col-form-label">Email Address</label>
-						<div class="col-8">
-							<input required type="email" class="form-control" name="emailaddress" placeholder="example@example.com">
-						</div>
+					<div class="form-group">
+						<label for="password">Admin Account Password</label>
+						<input required type="password" class="form-control" name="password">
+						<small class="form-text muted">Your admin account username will be your school name with no spaces and lowercase (i.e. myschool_admin)</small>
 					</div>
 
-					<div class="form-group row">
-						<label for="password" class="col-4 col-form-label">Password</label>
-						<div class="col-8">
-							<input required type="password" class="form-control" id="password"  name="password" placeholder="Password">
-						</div>
-					</div>
-
-					<div class="form-group row">
-						<label for="password" class="col-4 col-form-label">Confirm Password</label>
-						<div class="col-8">
-							<input required type="password" class="form-control" id="confirmpassword" name="confirmpassword" placeholder="Confirm Password">
-						</div>
+					<div class="form-group">
+						<button type='submit' class='btn btn-success btn-block'>Signup School</button>
 					</div>
 
 				</form>
@@ -127,14 +115,99 @@ $signup_script_URL = WEBURL.DOCROOT."scripts/core-site/account/signup.php";
 			<div class="modal-footer">
 
 				<button type="submit" class="btn btn-danger mr-auto" data-dismiss="modal"><i class="fa fa-remove"></i> Cancel</button>
-				<button type="submit" id="submitsignup" class="btn btn-success btn-block"><i class="fa fa-unlock-alt"></i> Signup</button>
 
 			</div>
 
 		</div>
+
 	</div>
+
 </div>
 
+<!-- User Signup Form Modal -->
+<div class="modal fade text-center" id="user-signup-form-modal">
+
+	<div class="modal-dialog">
+
+		<div class="modal-content">
+
+			<div class="modal-header">
+
+				<h4 class="modal-title"> User Signup Form</h4>
+				<i class="fa fa-remove" data-dismiss="modal"></i>
+
+			</div>
+
+			<div class="modal-body">
+
+				<form role="form" id="user-signup-form" method="post" action="<?php echo $user_signup_script_URL; ?>">
+
+					<div class="row">
+						<div class="form-group col-6">
+							<label for="forename">Forename</label>
+							<input required type="text" class="form-control" name="forename">
+						</div>
+
+						<div class="form-group col-6">
+							<label for="surname">Surname</label>
+							<input required type="text" class="form-control" name="surname">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="username">Username</label>
+						<input required type="text" class="form-control" name="username">
+					</div>
+
+					<div class="form-group">
+						<label for="password">Password</label>
+						<input required type="password" class="form-control" name="password">
+					</div>
+
+					<div class="form-group">
+						<label for="email_address">Email Address</label>
+						<input required type="email" class="form-control" name="email_address">
+						<small class="form-text muted">If you are a teacher please enter your school email address.</small>
+					</div>
+
+					<div class="form-group">
+						<label for="school_referral">School Referral Code</label>
+						<input required type="text" class="form-control" name="school_referral">
+						<small class="form-text muted">You should get this from your school.</small>
+					</div>
+
+					<div class="form-group">
+						<label for="status">Your Status at the School</label>
+						<select required class="form-control" name="status">
+							<option value="student">Student</option>
+							<option value="teacher">Teacher</option>
+						</select>
+					</div>
+
+					<div class="form-group">
+						<input type="text" name="teacher_code">
+						<small class="form-text muted">If you are a teacher, please enter your verification code here.</small>
+					</div>
+
+					<div class="form-group">
+						<button type='submit' class='btn btn-success btn-block'>Signup School</button>
+					</div>
+
+				</form>
+
+			</div>
+
+			<div class="modal-footer">
+
+				<button type="submit" class="btn btn-danger mr-auto" data-dismiss="modal"><i class="fa fa-remove"></i> Cancel</button>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
 
 <!-- Choose Timeslot -->
 <div class="modal fade text-center" id="choose-timeslot-modal">
