@@ -4,6 +4,8 @@ session_start();
 // Includes the database configuration file.
 require($_SERVER['DOCUMENT_ROOT'].'/parents-evening/server/config.php'); //Change to where it is stored in your website.
 
+require($_SERVER['DOCUMENT_ROOT'].DOCROOT.'scripts/core-site/session/session_student.php');
+
 $parents_evening_id = $_GET['id'];
 $parents_evening_date = $_GET['date'];
 

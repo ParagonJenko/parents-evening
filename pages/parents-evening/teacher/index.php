@@ -3,6 +3,7 @@
 session_start();
 // Includes the database configuration file.
 require($_SERVER['DOCUMENT_ROOT'].'/parents-evening/server/config.php'); //Change to where it is stored in your website.
+require($_SERVER['DOCUMENT_ROOT'].DOCROOT.'scripts/core-site/session/session_teacher.php');
 
 $choose_timeslot_ajax_URL = WEBURL.DOCROOT."scripts/parents-evening/students/timeslot_form.php";
 ?>

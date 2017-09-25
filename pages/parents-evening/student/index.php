@@ -4,6 +4,7 @@ session_start();
 
 // Includes the database configuration file.
 require($_SERVER['DOCUMENT_ROOT']."/parents-evening/server/config.php");
+require($_SERVER['DOCUMENT_ROOT'].DOCROOT.'scripts/core-site/session/session_student.php');
 ?>
 
 <!-- TEMPLATE DESIGNED BY ALEX JENKINSON -->

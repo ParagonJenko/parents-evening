@@ -3,6 +3,7 @@
 session_start();
 // Includes the database configuration file.
 require($_SERVER['DOCUMENT_ROOT']."/parents-evening/server/config.php");
+require($_SERVER['DOCUMENT_ROOT'].DOCROOT.'scripts/core-site/session/session_active.php');
 
 // Update Details URL
 $update_details_url = WEBURL.DOCROOT."scripts/core-site/account/updatedetails.php";
@@ -17,7 +18,6 @@ $update_details_url = WEBURL.DOCROOT."scripts/core-site/account/updatedetails.ph
 	<body>
 	<!-- Require navbar from specified file -->
 	<?php require($_SERVER['DOCUMENT_ROOT'].DOCROOT."includes/navbar.php");?>
-
 	<?php require($_SERVER['DOCUMENT_ROOT'].DOCROOT."includes/messages.php");?>
 
 	<?php
