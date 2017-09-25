@@ -312,7 +312,7 @@ require($_SERVER['DOCUMENT_ROOT'].DOCROOT.'scripts/core-site/session/session_adm
 
 								<div class="form-group">
 
-									<button type="submit" class="btn btn-warning btn-block">Add Student to Class</button>
+									<button type="submit" class="btn btn-warning btn-block">Add Student to Teacher</button>
 
 								</div>
 
@@ -372,7 +372,7 @@ require($_SERVER['DOCUMENT_ROOT'].DOCROOT.'scripts/core-site/session/session_adm
 
 								<div class="form-group">
 
-									<button type="submit" class="btn btn-warning btn-block">Remove Student from Class</button>
+									<button type="submit" class="btn btn-warning btn-block">Remove Student from Teacher</button>
 
 								</div>
 
