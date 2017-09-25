@@ -24,7 +24,7 @@ $choose_timeslot_ajax_URL = WEBURL.DOCROOT."scripts/parents-evening/students/tim
 
 		<?php require($_SERVER['DOCUMENT_ROOT'].DOCROOT."includes/messages.php"); ?>
 
-		<h1>Teacher Schedule</h1>
+		<h1>My Schedule</h1>
 
 
 		<ul class="nav nav-pills nav-justified" id="pills-tab-teacher">
@@ -45,22 +45,24 @@ $choose_timeslot_ajax_URL = WEBURL.DOCROOT."scripts/parents-evening/students/tim
 					 		 		FROM appointments
 					 		 		INNER JOIN users
 					 		 		ON appointments.student_id = users.id
-									INNER JOIN teachers
-									ON appointments.teacher_id = teachers.id
-					 		 		WHERE teachers.user_id = {$_SESSION['userid']}";
+					 		 		WHERE appointments.teacher_id = {$_SESSION['userid']}";
 
 					$result = mysqli_query($conn, $sql);
 
 					$record = "<div class='row'>";
-						$record .= "<h4 class='col-6'>Forename</h4>";
-						$record .= "<h4 class='col-6'>Surname</h4>";
+						$record .= "<h4 class='col-3'>Forename</h4>";
+						$record .= "<h4 class='col-3'>Surname</h4>";
+						$record .= "<h4 class='col-3'>Start</h4>";
+						$record .= "<h4 class='col-3'>End</h4>";
 					$record .= "</div>";
 
 					while($row = mysqli_fetch_assoc($result))
 					{
 						$record .= "<div class='row'>";
-							$record .= "<p class='col-6'>{$row['forename']}</p>";
-							$record .= "<p class='col-6'>{$row['surname']}</p>";
+							$record .= "<p class='col-3'>{$row['forename']}</p>";
+							$record .= "<p class='col-3'>{$row['surname']}</p>";
+							$record .= "<p class='col-3'>{$row['appointment_start']}</p>";
+							$record .= "<p class='col-3'>{$row['appointment_end']}</p>";
 						$record .= "</div>";
 					}
 					echo $record;

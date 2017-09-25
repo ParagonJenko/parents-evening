@@ -28,10 +28,6 @@ switch($table)
 		$columns = "school_id, evening_date, start_time, end_time";
 		$values = "{$_SESSION['school_id']}, '{$_POST['evening_date']}', '{$_POST['start_time']}', '{$_POST['end_time']}'";
 		break;
-	case "students":
-		$columns = "user_id, teacher_id";
-		$values = "{$_POST['student_id']},{$_POST['teacher_id']}";
-		break;
 	default:
 		echo "FAIL";
 		exit();
@@ -42,54 +38,17 @@ $sql = "INSERT INTO $table ($columns) VALUES ($values);";
 if(mysqli_query($conn, $sql))
 {
 	// Success
-	if($status == "teacher")
-	{
-		$last_id = sqli_insert_id($conn);
-		$sql_insert_teacher = "INSERT INTO teachers (user_id, school_id) VALUES ($last_id, {$_SESSION['school_id']})";
+	// Insert record of this action into serverlog
+	$action = "$table has been added where username: {$_POST['username']}";
+	$sql_serverlog = "INSERT INTO server_log (ip_address, user, action, location) VALUES ('$ipaddress', '$user', '$action', '$location')";
+	mysqli_query($conn, $sql_serverlog);
 
-		if(mysqli_query($conn, $sql_insert_teacher))
-		{
-			// Insert record of this action into serverlog
-			$action = "Teacher inserted into database: {$_POST['username']}";
-			$sql_serverlog = "INSERT INTO server_log (ip_address, user, action, location) VALUES ('$ipaddress', '$user', '$action', '$location')";
-			mysqli_query($conn, $sql_serverlog);
-
-			// Closes the database connection
-			mysqli_close($conn);
-			// Sets the redirect location
-			header($header_URL.$header_ADD);
-			// Exits the script
-			exit();
-		}
-		else
-		{
-			// Insert record of this action into serverlog
-			$action = "Teacher failed to be inserted into database: {$_POST['username']}";
-			$sql_serverlog = "INSERT INTO server_log (ip_address, user, action, location) VALUES ('$ipaddress', '$user', '$action', '$location')";
-			mysqli_query($conn, $sql_serverlog);
-
-			// Closes the database connection
-			mysqli_close($conn);
-			// Sets the redirect location
-			header($header_URL);
-			// Exits the script
-			exit();
-		}
-	}
-	else
-	{
-		// Insert record of this action into serverlog
-		$action = "$table has been added where username: {$_POST['username']}";
-		$sql_serverlog = "INSERT INTO server_log (ip_address, user, action, location) VALUES ('$ipaddress', '$user', '$action', '$location')";
-		mysqli_query($conn, $sql_serverlog);
-
-		// Closes the database connection
-		mysqli_close($conn);
-		// Sets the redirect location
-		header($header_URL.$header_ADD);
-		// Exits the script
-		exit();
-	}
+	// Closes the database connection
+	mysqli_close($conn);
+	// Sets the redirect location
+	header($header_URL.$header_ADD);
+	// Exits the script
+	exit();
 }
 else
 {

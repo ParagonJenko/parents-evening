@@ -51,12 +51,11 @@ $choose_timeslot_ajax_URL = WEBURL.DOCROOT."scripts/parents-evening/students/tim
 
 			function checkClassTimes($conn, $time, $teacher_id)
 			{
-				$sql_check_times = "SELECT appointments.student_id, appointments.parents_evening_id, appointments.appointment_start, appointments.appointment_end FROM appointments
-									INNER JOIN students
-									ON appointments.student_id = students.id
-									INNER JOIN teachers
-									ON appointments.teacher_id = teachers.id
-									WHERE appointments.appointment_start = '$time' AND teachers.id = $teacher_id AND appointments.parents_evening_id = {$_GET['id']}";
+				$sql_check_times = "SELECT appointments.student_id, appointments.parents_evening_id, appointments.appointment_start, appointments.appointment_end
+				FROM appointments
+				INNER JOIN users
+				ON appointments.teacher_id = users.id
+				WHERE appointments.appointment_start = '$time' AND users.id = $teacher_id AND appointments.parents_evening_id = {$_GET['id']}";
 
 				$result = mysqli_query($conn, $sql_check_times);
 
@@ -157,13 +156,10 @@ $choose_timeslot_ajax_URL = WEBURL.DOCROOT."scripts/parents-evening/students/tim
 
 			function showClasses($conn, $input)
 			{
-				$sql_check_classes = "SELECT teachers.id, users.surname
-                            FROM students
-                            INNER JOIN teachers
-                            ON students.teacher_id = teachers.id
-														INNER JOIN users
-														ON teachers.user_id = users.id
-														WHERE students.user_id = {$_SESSION['userid']}";
+				$sql_check_classes = "SELECT users.surname, users.id FROM appointments
+				INNER JOIN users
+				ON appointments.teacher_id = users.id
+				WHERE appointments.student_id = {$_SESSION['userid']}";
 
 				$result = mysqli_query($conn, $sql_check_classes);
 
@@ -242,7 +238,7 @@ $choose_timeslot_ajax_URL = WEBURL.DOCROOT."scripts/parents-evening/students/tim
 
 		?>
 
-		<h1>Student Classes</h1>
+		<h1>My Classes</h1>
 
 
 		<ul class="nav nav-pills nav-justified" id="pills-tab-student">
