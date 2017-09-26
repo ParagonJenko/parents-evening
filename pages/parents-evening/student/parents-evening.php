@@ -156,10 +156,10 @@ $choose_timeslot_ajax_URL = WEBURL.DOCROOT."scripts/parents-evening/students/tim
 
 			function showClasses($conn, $input)
 			{
-				$sql_check_classes = "SELECT users.surname, users.id FROM appointments
+				$sql_check_classes = "SELECT users.surname, users.id FROM class
 				INNER JOIN users
-				ON appointments.teacher_id = users.id
-				WHERE appointments.student_id = {$_SESSION['userid']}";
+				ON class.teacher_id = users.id
+				WHERE class.student_id = {$_SESSION['userid']}";
 
 				$result = mysqli_query($conn, $sql_check_classes);
 
