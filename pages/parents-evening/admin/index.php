@@ -8,6 +8,12 @@ require($_SERVER['DOCUMENT_ROOT'].'/parents-evening/server/config.php'); //Chang
 $add_student_teacher_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/add-script.php?table_name=students";
 $remove_student_teacher_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/delete-script.php?table_name=students";
 
+$add_class_script_URL = WEBURL.DOCROOT."";
+$add_student_teacher_class_script_URL = WEBURL.DOCROOT."";
+
+$remove_class_script_URL = WEBURL.DOCROOT."";
+$remove_teacher_student_class_script_URL = WEBURL.DOCROOT."";
+
 require($_SERVER['DOCUMENT_ROOT'].DOCROOT.'scripts/core-site/session/session_admin.php');
 
 ?>
@@ -278,9 +284,9 @@ require($_SERVER['DOCUMENT_ROOT'].DOCROOT.'scripts/core-site/session/session_adm
 
 						<div class="container-fluid">
 
-							<h1>Add Student from Teacher</h1>
+							<h1>Add Class</h1>
 
-							<form method="post" action="<?php echo $add_student_teacher_script_URL ?>">
+							<form method="post" action="<?php echo $add_class_script_URL ?>">
 
 								<div class="form-group">
 
@@ -291,7 +297,30 @@ require($_SERVER['DOCUMENT_ROOT'].DOCROOT.'scripts/core-site/session/session_adm
 
 								<div class="form-group">
 
-									<button type="submit" class="btn btn-warning btn-block">Add Student to Teacher</button>
+									<button type="submit" class="btn btn-warning btn-block">Add Class</button>
+
+								</div>
+
+							</form>
+
+						</div>
+
+						<div class="container-fluid">
+
+							<h1>Add Student/Teacher to Class</h1>
+
+							<form method="post" action="<?php echo $add_student_teacher_class_script_URL ?>">
+
+								<div class="form-group">
+
+									<label for="x">x</label>
+									<input type="text" name="x">
+
+								</div>
+
+								<div class="form-group">
+
+									<button type="submit" class="btn btn-warning btn-block">Add Student/Teacher to Class</button>
 
 								</div>
 
@@ -305,9 +334,9 @@ require($_SERVER['DOCUMENT_ROOT'].DOCROOT.'scripts/core-site/session/session_adm
 
 						<div class="container-fluid">
 
-							<h1>Remove Student from Teacher</h1>
+							<h1>Remove Class</h1>
 
-							<form method="post" action="<?php echo $remove_student_teacher_script_URL ?>">
+							<form method="post" action="<?php echo $remove_class_script_URL ?>">
 
 								<div class="form-group">
 
@@ -318,7 +347,30 @@ require($_SERVER['DOCUMENT_ROOT'].DOCROOT.'scripts/core-site/session/session_adm
 
 								<div class="form-group">
 
-									<button type="submit" class="btn btn-warning btn-block">Remove Student from Teacher</button>
+									<button type="submit" class="btn btn-warning btn-block">Remove Class</button>
+
+								</div>
+
+							</form>
+
+						</div>
+
+						<div class="container-fluid">
+
+							<h1>Remove Teacher/Student from Class</h1>
+
+							<form method="post" action="<?php echo $remove_teacher_student_class_script_URL ?>">
+
+								<div class="form-group">
+
+									<label for="x">x</label>
+									<input type="text" name="x">
+
+								</div>
+
+								<div class="form-group">
+
+									<button type="submit" class="btn btn-warning btn-block">Remove Teacher/Student Class</button>
 
 								</div>
 
