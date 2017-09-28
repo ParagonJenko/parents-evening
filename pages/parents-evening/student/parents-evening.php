@@ -6,7 +6,16 @@ require($_SERVER['DOCUMENT_ROOT'].'/parents-evening/server/config.php'); //Chang
 
 require($_SERVER['DOCUMENT_ROOT'].DOCROOT.'scripts/core-site/session/session_student.php');
 
-$parents_evening_id = $_GET['id'];
+if(isset($_GET['id']))
+{
+	$parents_evening_id = $_GET['id'];
+}
+else
+{
+	header("Location: ".WEBURL.DOCROOT."pages/parents-evening/student");
+	exit();
+}
+
 $parents_evening_date = $_GET['date'];
 
 $choose_timeslot_ajax_URL = WEBURL.DOCROOT."scripts/parents-evening/students/timeslot_form.php";

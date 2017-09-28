@@ -28,6 +28,14 @@ switch($table)
 		$columns = "school_id, evening_date, start_time, end_time";
 		$values = "{$_SESSION['school_id']}, '{$_POST['evening_date']}', '{$_POST['start_time']}', '{$_POST['end_time']}'";
 		break;
+	case "classes":
+		$columns = "class_name, teacher_id, additional_teacher_id, school_id";
+		$values = "'{$_POST['class_name']}',{$_POST['class_teacher']},{$_POST['class_additional_teacher']}, {$_SESSION['school_id']}";
+		break;
+	case "class":
+		$columns = "class_id, student_id";
+		$values = "{$_POST['select_class']},{$_POST['select_student']}";
+		break;
 	default:
 		echo "FAIL";
 		exit();

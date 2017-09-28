@@ -8,13 +8,49 @@ require($_SERVER['DOCUMENT_ROOT'].'/parents-evening/server/config.php'); //Chang
 $add_student_teacher_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/add-script.php?table_name=students";
 $remove_student_teacher_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/delete-script.php?table_name=students";
 
-$add_class_script_URL = WEBURL.DOCROOT."";
-$add_student_teacher_class_script_URL = WEBURL.DOCROOT."";
+$add_class_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/add-script.php?table_name=classes";
+$add_student_class_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/add-script.php?table_name=class";
 
-$remove_class_script_URL = WEBURL.DOCROOT."";
-$remove_teacher_student_class_script_URL = WEBURL.DOCROOT."";
+$remove_class_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/delete-script.php?table_name=classes";
+$remove_teacher_class_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/delete-script.php?table_name=classes";
 
 require($_SERVER['DOCUMENT_ROOT'].DOCROOT.'scripts/core-site/session/session_admin.php');
+
+function selectTeachers($conn)
+{
+	$sql = "SELECT * FROM users WHERE status = 'teacher' AND school_id = {$_SESSION['school_id']}";
+
+	$result = mysqli_query($conn, $sql);
+
+	while($row = mysqli_fetch_assoc($result))
+	{
+		echo "<option value='{$row['id']}'>{$row['forename']} {$row['surname']}</option>";
+	}
+}
+
+function selectStudents($conn)
+{
+	$sql = "SELECT * FROM users WHERE status = 'student' AND school_id = {$_SESSION['school_id']}";
+
+	$result = mysqli_query($conn, $sql);
+
+	while($row = mysqli_fetch_assoc($result))
+	{
+		echo "<option value='{$row['id']}'>{$row['forename']} {$row['surname']}</option>";
+	}
+}
+
+function selectClass($conn)
+{
+	$sql = "SELECT * FROM classes WHERE school_id = {$_SESSION['school_id']}";
+
+	$result = mysqli_query($conn, $sql);
+
+	while($row = mysqli_fetch_assoc($result))
+	{
+		echo "<option value='{$row['id']}'>{$row['class_name']}</option>";
+	}
+}
 
 ?>
 
@@ -68,20 +104,6 @@ require($_SERVER['DOCUMENT_ROOT'].DOCROOT.'scripts/core-site/session/session_adm
 							<a class="dropdown-item" id="v-pills-teacher-tab" data-toggle="pill" href="#v-pills-teacher">Teacher</a>
 
 							<a class="dropdown-item" id="v-pills-student-tab" data-toggle="pill" href="#v-pills-student">Student</a>
-
-						</div>
-
-					</li>
-
-					<li class="nav-item dropdown">
-
-						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-address-book"></i> Teachers</a>
-
-						<div class="dropdown-menu text-center w-100">
-
-							<a class="dropdown-item" id="v-pills-add-student-teacher-tab" data-toggle="pill" href="#v-pills-add-student-teacher">Add Students to Teacher</a>
-
-							<a class="dropdown-item" id="v-pills-remove-student-teacher-tab" data-toggle="pill" href="#v-pills-remove-student-teacher">Remove Students from Teacher</a>
 
 						</div>
 
@@ -288,10 +310,32 @@ require($_SERVER['DOCUMENT_ROOT'].DOCROOT.'scripts/core-site/session/session_adm
 
 							<form method="post" action="<?php echo $add_class_script_URL ?>">
 
-								<div class="form-group">
+								<div class="form-group row">
 
-									<label for="x">x</label>
-									<input type="text" name="x">
+									<label class="col-4" for="class_name">Class Name</label>
+									<input class="form-control col-8" type="text" name="class_name" required>
+
+								</div>
+
+								<div class="form-group row">
+
+									<label class="col-4" for="class_teacher">Class Teacher</label>
+									<select class="form-control col-8" name="class_teacher" required>
+
+										<?php	selectTeachers($conn) ?>
+
+									</select>
+
+								</div>
+
+								<div class="form-group row">
+
+									<label class="col-4" for="class_additional_teacher">Class Additional Teacher</label>
+									<select class="form-control col-8" name="class_additional_teacher">
+										<option value="NULL">No Additional Teacher</option>
+										<?php	selectTeachers($conn) ?>
+
+									</select>
 
 								</div>
 
@@ -307,20 +351,35 @@ require($_SERVER['DOCUMENT_ROOT'].DOCROOT.'scripts/core-site/session/session_adm
 
 						<div class="container-fluid">
 
-							<h1>Add Student/Teacher to Class</h1>
+							<h1>Add Student to Class</h1>
 
-							<form method="post" action="<?php echo $add_student_teacher_class_script_URL ?>">
+							<form method="post" action="<?php echo $add_student_class_script_URL ?>">
 
-								<div class="form-group">
+								<div class="form-group row">
 
-									<label for="x">x</label>
-									<input type="text" name="x">
+									<label class="col-4" for="select_class">Select Class</label>
+									<select class="form-control col-8" name="select_class">
+
+										<?php	selectClass($conn) ?>
+
+									</select>
+
+								</div>
+
+								<div class="form-group row">
+
+									<label class="col-4" for="select_student">Select Student</label>
+									<select class="form-control col-8" name="select_student">
+
+											<?php	selectStudents($conn) ?>
+
+									</select>
 
 								</div>
 
 								<div class="form-group">
 
-									<button type="submit" class="btn btn-warning btn-block">Add Student/Teacher to Class</button>
+									<button type="submit" class="btn btn-warning btn-block">Add Student to Class</button>
 
 								</div>
 
@@ -338,10 +397,10 @@ require($_SERVER['DOCUMENT_ROOT'].DOCROOT.'scripts/core-site/session/session_adm
 
 							<form method="post" action="<?php echo $remove_class_script_URL ?>">
 
-								<div class="form-group">
+								<div class="form-group row">
 
-									<label for="x">x</label>
-									<input type="text" name="x">
+									<label class="col-4" for="x">x</label>
+									<input class="form-control col-8" type="text" name="x">
 
 								</div>
 
@@ -359,12 +418,12 @@ require($_SERVER['DOCUMENT_ROOT'].DOCROOT.'scripts/core-site/session/session_adm
 
 							<h1>Remove Teacher/Student from Class</h1>
 
-							<form method="post" action="<?php echo $remove_teacher_student_class_script_URL ?>">
+							<form method="post" action="<?php echo $remove_teacher_class_script_URL ?>">
 
-								<div class="form-group">
+								<div class="form-group row">
 
-									<label for="x">x</label>
-									<input type="text" name="x">
+									<label class="col-4" for="x">x</label>
+									<input class="form-control col-8" type="text" name="x">
 
 								</div>
 
