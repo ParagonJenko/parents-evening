@@ -10,8 +10,9 @@ $header_URL = "Location: ".WEBURL.DOCROOT."pages/parents-evening/admin/";
 $ipaddress = $_SERVER['REMOTE_ADDR'];
 $user = $_SESSION['username'];
 $location = "delete-script.php";
+$table = $_GET['table_name'];
 
-$sql = "DELETE FROM {$_GET['table_name']} WHERE id = {$_POST['delete_id']}";
+$sql = "DELETE FROM {$table} WHERE id = {$_POST['delete_id']}";
 
 if(mysqli_query($conn, $sql))
 {

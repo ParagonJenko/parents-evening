@@ -52,6 +52,30 @@ function selectClass($conn)
 	}
 }
 
+function showClass($conn)
+{
+	$sql = "SELECT classes.*, teacher.forename, teacher.surname, teacher_add.forename, teacher_add.surname
+	FROM classes
+	LEFT JOIN users AS teacher
+	ON classes.teacher_id = teacher.id
+	LEFT JOIN users AS teacher_add
+	ON classes.additional_teacher_id = teacher_add.id
+	WHERE classes.school_id = {$_SESSION['school_id']}";
+
+	$result = mysqli_query($conn, $sql);
+
+	while($row = mysqli_fetch_array($result))
+	{
+		$record = "<tr>";
+			$record .= "<th scope='row'>{$row[0]}</th>";
+			$record .= "<td>{$row[1]}</td>";
+			$record .= "<td>{$row[5]} {$row[6]}</td>";
+			$record .= "<td>{$row[7]} {$row[8]}</td>";
+		$record .= "</tr>";
+		echo $record;
+	}
+}
+
 ?>
 
 <!-- TEMPLATE DESIGNED BY ALEX JENKINSON -->
@@ -114,6 +138,8 @@ function selectClass($conn)
 						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-address-book-o"></i> Classes</a>
 
 						<div class="dropdown-menu text-center w-100">
+
+							<a class="dropdown-item" id="v-pills-class-tab" data-toggle="pill" href="#v-pills-class">View Classes</a>
 
 							<a class="dropdown-item" id="v-pills-add-class-tab" data-toggle="pill" href="#v-pills-add-class">Add Class</a>
 
@@ -231,6 +257,7 @@ function selectClass($conn)
 						<div class="container-fluid">
 
 							<div class="row">
+
 								<h2 class="col-10">Teacher</h2>
 
 								<div class="btn-group col-2">
@@ -255,6 +282,7 @@ function selectClass($conn)
 										<th>Username</th>
 										<th>Forename</th>
 										<th>Surname</th>
+										<th>Classes</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -293,10 +321,37 @@ function selectClass($conn)
 										<th>Username</th>
 										<th>Forename</th>
 										<th>Surname</th>
+										<th>Classes</th>
 									</tr>
 								</thead>
 								<tbody>
 								<?php showUsers($conn, "student") ?>
+
+						</div>
+
+					</div>
+
+					<div class="tab-pane fade" id="v-pills-class">
+
+						<div class="container-fluid">
+
+							<h1>Classes</h1>
+
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>Class Name</th>
+										<th>Class Teacher</th>
+										<th>Class Additional Teacher</th>
+									</tr>
+								</thead>
+								<tbody>
+
+									<?php showClass($conn) ?>
+
+								</tbody>
+							</table>
 
 						</div>
 
@@ -399,8 +454,12 @@ function selectClass($conn)
 
 								<div class="form-group row">
 
-									<label class="col-4" for="x">x</label>
-									<input class="form-control col-8" type="text" name="x">
+									<label class="col-4" for="select_class">Select Class</label>
+									<select class="form-control col-8" name="delete_id">
+
+										<?php	selectClass($conn) ?>
+
+									</select>
 
 								</div>
 

@@ -40,11 +40,11 @@ INSERT INTO users (status, forename, surname, username, email_address, school_id
 
 ('admin', 'HallCross', 'Admin', 'hallcross_admin', 'hallx@hallcross.com', 1, '$passwordhash'); -- 9
 
-INSERT INTO classes (class_name, teacher_id, additional_teacher_id) VALUES
-('13AB/IT1', 5, NULL), -- 1
-('13D/CS1', 5, 6), -- 2
-('13B/EN1', 7, NULL), -- 3
-('13C/MA1', 8, NULL); -- 4
+INSERT INTO classes (class_name, teacher_id, additional_teacher_id, school_id) VALUES
+('13AB/IT1', 5, NULL, 1), -- 1
+('13D/CS1', 5, 6, 1), -- 2
+('13B/EN1', 7, NULL, 1), -- 3
+('13C/MA1', 8, NULL, 1); -- 4
 
 INSERT INTO class (class_id, student_id) VALUES
 (1, 1),
