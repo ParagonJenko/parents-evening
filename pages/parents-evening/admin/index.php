@@ -26,7 +26,7 @@ function selectTeachers($conn)
 	{
 		echo "<option value='{$row['id']}'>{$row['forename']} {$row['surname']}</option>";
 	}
-}
+};
 
 function selectStudents($conn)
 {
@@ -38,7 +38,7 @@ function selectStudents($conn)
 	{
 		echo "<option value='{$row['id']}'>{$row['forename']} {$row['surname']}</option>";
 	}
-}
+};
 
 function selectClass($conn)
 {
@@ -50,7 +50,7 @@ function selectClass($conn)
 	{
 		echo "<option value='{$row['id']}'>{$row['class_name']}</option>";
 	}
-}
+};
 
 function showClass($conn)
 {
@@ -74,7 +74,25 @@ function showClass($conn)
 		$record .= "</tr>";
 		echo $record;
 	}
-}
+};
+
+function removeTeacherStudentClass($conn)
+{
+	$sql = "SELECT class.*, users.forename, users.surname, classes.class_name
+	FROM class
+	INNER JOIN users
+	ON class.student_id = users.id
+	INNER JOIN classes
+	ON class.class_id = classes.id";
+
+	$result = mysqli_query($conn, $sql);
+
+	while($row = mysqli_fetch_array($result))
+	{
+		$record = "<option value='{$row['id']}''>{$row['forename']} {$row['surname']} {$row['class_name']}</option>";
+		echo $record;
+	}
+};
 
 ?>
 
@@ -475,14 +493,16 @@ function showClass($conn)
 
 						<div class="container-fluid">
 
-							<h1>Remove Teacher/Student from Class</h1>
+							<h1>Remove Student from Class</h1>
 
 							<form method="post" action="<?php echo $remove_teacher_class_script_URL ?>">
 
 								<div class="form-group row">
 
-									<label class="col-4" for="x">x</label>
-									<input class="form-control col-8" type="text" name="x">
+									<label class="col-4" for="select_class">Select Student from Class</label>
+									<select class="form-control col-8" name="delete_id">
+										<?php removeTeacherStudentClass($conn); ?>
+									</select>
 
 								</div>
 
