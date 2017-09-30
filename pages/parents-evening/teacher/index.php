@@ -26,12 +26,50 @@ $choose_timeslot_ajax_URL = WEBURL.DOCROOT."scripts/parents-evening/students/tim
 
 		<h1>My Schedule</h1>
 
+		<?php
+		function classesShow($input, $conn)
+		{
+			$sql = "SELECT * FROM classes WHERE teacher_id = {$_SESSION['userid']} AND school_id = {$_SESSION['school_id']}";
+
+			$result = mysqli_query($conn, $sql);
+
+			while($row = mysqli_fetch_assoc($result))
+			{
+				switch($input)
+				{
+					case 1:
+						$record = "<li class='nav-item'>";
+							$record .= "<a class='nav-link' id='pills-class-{$row['id']}' data-toggle='pill' href='#class{$row['id']}'>{$row['class_name']}</a>";
+						$record .= "</li>";
+						echo $record;
+						break;
+					case 2:
+						$record = "<div class='tab-pane fade' id='class-{$row['id']}'>";
+						$sql_select_users = "SELECT class.*, users.forename, users.surname
+						FROM class
+						INNER JOIN users
+						ON class.student_id = users.id
+						WHERE class_id = {$row['id']}";
+						$result_select_users = mysqli_query($conn, $sql_select_users);
+						while($row_select_users = mysqli_fetch_assoc($result_select_users))
+						{
+							$record .= "";
+						}
+						$record .= "</div>";
+						break;
+				}
+
+			}
+		};
+		?>
 
 		<ul class="nav nav-pills nav-justified" id="pills-tab-teacher">
 
 			<li class='nav-item'>
 				<a class='nav-link active' id='pills-home-tab' data-toggle='pill' href='#my-timetable'>My Timetable</a>
 			</li>
+
+
 
 		</ul>
 
@@ -49,22 +87,28 @@ $choose_timeslot_ajax_URL = WEBURL.DOCROOT."scripts/parents-evening/students/tim
 
 					$result = mysqli_query($conn, $sql);
 
-					$record = "<div class='row'>";
-						$record .= "<h4 class='col-3'>Forename</h4>";
-						$record .= "<h4 class='col-3'>Surname</h4>";
-						$record .= "<h4 class='col-3'>Start</h4>";
-						$record .= "<h4 class='col-3'>End</h4>";
-					$record .= "</div>";
+					$record = "<table class='table table-hover'>";
+					  $record .= "<thead>";
+							$record .=  "<tr>";
+								$record .= "<th>Forename</th>";
+								$record .= "<th>Surname</th>";
+								$record .= "<th>Start</th>";
+								$record .= "<th>End</th>";
+							$record .= "</tr>";
+						$record .=  "</thead>";
 
-					while($row = mysqli_fetch_assoc($result))
-					{
-						$record .= "<div class='row'>";
-							$record .= "<p class='col-3'>{$row['forename']}</p>";
-							$record .= "<p class='col-3'>{$row['surname']}</p>";
-							$record .= "<p class='col-3'>{$row['appointment_start']}</p>";
-							$record .= "<p class='col-3'>{$row['appointment_end']}</p>";
-						$record .= "</div>";
-					}
+						$record .=  "<tbody>";
+						while($row = mysqli_fetch_assoc($result))
+						{
+							$record .= "<tr>";
+								$record .= "<td>{$row['forename']}</td>";
+								$record .= "<td>{$row['surname']}</td>";
+								$record .= "<td>{$row['appointment_start']}</td>";
+								$record .= "<td>{$row['appointment_end']}</td>";
+							$record .= "</tr>";
+						}
+						$record .= "</tbody>";
+					$record .= "</table>";
 					echo $record;
 				?>
 
