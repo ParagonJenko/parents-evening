@@ -44,10 +44,8 @@ function showUsers($conn, $status)
 				$record .= "</tr>";
 				break;
 			case "teacher":
-				$sql_get_classes = "SELECT class.*, classes.class_name
-				FROM class
-				INNER JOIN classes
-				ON class.class_id = classes.id
+				$sql_get_classes = "SELECT classes.class_name
+				FROM classes
 				WHERE classes.teacher_id = {$row[0]}";
 				$result_get_classes = mysqli_query($conn, $sql_get_classes);
 
