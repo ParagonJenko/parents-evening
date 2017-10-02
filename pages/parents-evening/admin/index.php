@@ -4,7 +4,6 @@ session_start();
 // Includes the database configuration file.
 require($_SERVER['DOCUMENT_ROOT'].'/parents-evening/server/config.php'); //Change to where it is stored in your website.
 
-
 $add_student_teacher_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/add-script.php?table_name=students";
 $remove_student_teacher_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/delete-script.php?table_name=students";
 
@@ -12,7 +11,7 @@ $add_class_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/add-script
 $add_student_class_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/add-script.php?table_name=class";
 
 $remove_class_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/delete-script.php?table_name=classes";
-$remove_teacher_class_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/delete-script.php?table_name=classes";
+$remove_teacher_class_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/delete-script.php?table_name=class";
 
 require($_SERVER['DOCUMENT_ROOT'].DOCROOT.'scripts/core-site/session/session_admin.php');
 
