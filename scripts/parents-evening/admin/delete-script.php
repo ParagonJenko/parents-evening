@@ -4,7 +4,15 @@ session_start();
 // Includes the database configuration file.
 require($_SERVER['DOCUMENT_ROOT'].'/parents-evening/server/config.php'); //Change to where it is stored in your website.
 
-$header_URL = "Location: ".WEBURL.DOCROOT."pages/parents-evening/admin/";
+if($_SESSION['status'] == "teacher")
+{
+	$suffix = "teacher";
+}
+else
+{
+	$suffix = "admin";
+}
+$header_URL = "Location: ".WEBURL.DOCROOT."pages/parents-evening/$suffix/";
 
 // Set serverlog variables
 $ipaddress = $_SERVER['REMOTE_ADDR'];
@@ -12,7 +20,7 @@ $user = $_SESSION['username'];
 $location = "delete-script.php";
 $table = $_GET['table_name'];
 
-$sql = "DELETE FROM {$table} WHERE id = {$_POST['delete_id']}";
+$sql = "DELETE FROM {$table} WHERE id = {$_POST['delete_id']}{$_GET['delete_id']}";
 
 if(mysqli_query($conn, $sql))
 {
