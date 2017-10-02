@@ -29,6 +29,7 @@ $choose_timeslot_ajax_URL = WEBURL.DOCROOT."scripts/parents-evening/students/tim
 		<?php
 		function classesShow($input, $conn)
 		{
+			$delete_user_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/delete-script.php";
 			$sql = "SELECT * FROM classes WHERE teacher_id = {$_SESSION['userid']} AND school_id = {$_SESSION['school_id']}";
 
 			$result = mysqli_query($conn, $sql);
@@ -39,7 +40,7 @@ $choose_timeslot_ajax_URL = WEBURL.DOCROOT."scripts/parents-evening/students/tim
 				{
 					case 1:
 						$record = "<li class='nav-item'>";
-							$record .= "<a class='nav-link' id='pills-class-{$row['id']}' data-toggle='pill' href='#class{$row['id']}'>{$row['class_name']}</a>";
+							$record .= "<a class='nav-link' id='pills-class-{$row['id']}' data-toggle='pill' href='#class-{$row['id']}'>{$row['class_name']}</a>";
 						$record .= "</li>";
 						echo $record;
 						break;
@@ -51,11 +52,30 @@ $choose_timeslot_ajax_URL = WEBURL.DOCROOT."scripts/parents-evening/students/tim
 						ON class.student_id = users.id
 						WHERE class_id = {$row['id']}";
 						$result_select_users = mysqli_query($conn, $sql_select_users);
-						while($row_select_users = mysqli_fetch_assoc($result_select_users))
-						{
-							$record .= "";
-						}
-						$record .= "</div>";
+						$record .= "<table class='table table-hover'>";
+						  $record .= "<thead>";
+								$record .=  "<tr>";
+									$record .= "<th>Forename</th>";
+									$record .= "<th>Surname</th>";
+									$record .= "<th>Remove Student</th>";
+								$record .= "</tr>";
+							$record .=  "</thead>";
+
+							$record .=  "<tbody>";
+
+							while($row_select_users = mysqli_fetch_assoc($result_select_users))
+							{
+								$record .= "<tr>";
+									$record .= "<td>{$row_select_users['forename']}</td>";
+									$record .= "<td>{$row_select_users['surname']}</td>";
+									$record .= "<td><a class='btn btn-warning fa fa-minus-circle' href='{$delete_user_script_URL}?table_name=class&delete_id={$row_select_users['id']}'></a></td>";
+								$record .= "</tr>";
+							}
+								$record .= "</tbody>";
+							$record .= "</table>";
+
+							$record .= "</div>";
+							echo $record;
 						break;
 				}
 
@@ -69,7 +89,7 @@ $choose_timeslot_ajax_URL = WEBURL.DOCROOT."scripts/parents-evening/students/tim
 				<a class='nav-link active' id='pills-home-tab' data-toggle='pill' href='#my-timetable'>My Timetable</a>
 			</li>
 
-
+			<?php  classesShow(1, $conn); ?>
 
 		</ul>
 
@@ -98,6 +118,7 @@ $choose_timeslot_ajax_URL = WEBURL.DOCROOT."scripts/parents-evening/students/tim
 						$record .=  "</thead>";
 
 						$record .=  "<tbody>";
+
 						while($row = mysqli_fetch_assoc($result))
 						{
 							$record .= "<tr>";
@@ -113,6 +134,8 @@ $choose_timeslot_ajax_URL = WEBURL.DOCROOT."scripts/parents-evening/students/tim
 				?>
 
 			</div>
+
+			<?php  classesShow(2, $conn); ?>
 
 		</div>
 
