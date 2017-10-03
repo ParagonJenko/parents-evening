@@ -185,7 +185,7 @@ $user_signup_script_URL = WEBURL.DOCROOT."scripts/parents-evening/signup/user-si
 					</div>
 
 					<div class="form-group">
-						<input type="text" name="teacher_code">
+						<input class="form-control" type="text" name="teacher_code">
 						<small class="form-text muted">If you are a teacher, please enter your verification code here.</small>
 					</div>
 
