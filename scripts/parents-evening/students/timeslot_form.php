@@ -1,4 +1,5 @@
 <?php
+require($_SERVER['DOCUMENT_ROOT'].'/parents-evening/server/config.php'); //Change to where it is stored in your website.
 // Choose Timeslot Script URL
 $choose_timeslot_script_URL = WEBURL.DOCROOT."scripts/parents-evening/students/timeslot_choose.php";
 

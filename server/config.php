@@ -2,7 +2,7 @@
 // Define Website ROOT
 // i.e testing/template/
 define("DOCROOT", "/parents-evening/", TRUE);
-define("WEBURL", "http://www.alex-jenkinson.co.uk", TRUE);
+define("WEBURL", "https://www.alex-jenkinson.co.uk", TRUE);
 
 // Your Database Connection
 $dbservername = "localhost"; // Servers name

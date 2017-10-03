@@ -24,14 +24,74 @@ $choose_timeslot_ajax_URL = WEBURL.DOCROOT."scripts/parents-evening/students/tim
 
 		<?php require($_SERVER['DOCUMENT_ROOT'].DOCROOT."includes/messages.php"); ?>
 
-		<h1>Teacher Schedule</h1>
+		<h1>My Schedule</h1>
 
+		<?php
+		function classesShow($input, $conn)
+		{
+			$delete_user_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/delete-script.php";
+			$sql = "SELECT * FROM classes WHERE teacher_id = {$_SESSION['userid']} AND school_id = {$_SESSION['school_id']}";
+
+			$result = mysqli_query($conn, $sql);
+
+			while($row = mysqli_fetch_assoc($result))
+			{
+				switch($input)
+				{
+					case 1:
+						$record = "<li class='nav-item'>";
+							$record .= "<a class='nav-link' id='pills-class-{$row['id']}' data-toggle='pill' href='#class-{$row['id']}'>{$row['class_name']}</a>";
+						$record .= "</li>";
+						echo $record;
+						break;
+					case 2:
+						$record = "<div class='tab-pane fade' id='class-{$row['id']}'>";
+						$record .= "<a class='btn btn-success' data-toggle='modal' href='#add-to-class-form-modal'><i class='fa fa-plus-circle'></i> Student to Class</a>";
+
+						$sql_select_users = "SELECT class.*, users.forename, users.surname
+						FROM class
+						INNER JOIN users
+						ON class.student_id = users.id
+						WHERE class_id = {$row['id']}";
+						$result_select_users = mysqli_query($conn, $sql_select_users);
+						$record .= "<table class='table table-hover'>";
+						  $record .= "<thead>";
+								$record .=  "<tr>";
+									$record .= "<th>Forename</th>";
+									$record .= "<th>Surname</th>";
+									$record .= "<th>Remove Student</th>";
+								$record .= "</tr>";
+							$record .=  "</thead>";
+
+							$record .=  "<tbody>";
+
+							while($row_select_users = mysqli_fetch_assoc($result_select_users))
+							{
+								$record .= "<tr>";
+									$record .= "<td>{$row_select_users['forename']}</td>";
+									$record .= "<td>{$row_select_users['surname']}</td>";
+									$record .= "<td><a class='btn btn-warning fa fa-minus-circle' href='{$delete_user_script_URL}?table_name=class&delete_id={$row_select_users['id']}'></a></td>";
+								$record .= "</tr>";
+							}
+								$record .= "</tbody>";
+							$record .= "</table>";
+
+							$record .= "</div>";
+							echo $record;
+						break;
+				}
+
+			}
+		};
+		?>
 
 		<ul class="nav nav-pills nav-justified" id="pills-tab-teacher">
 
 			<li class='nav-item'>
 				<a class='nav-link active' id='pills-home-tab' data-toggle='pill' href='#my-timetable'>My Timetable</a>
 			</li>
+
+			<?php  classesShow(1, $conn); ?>
 
 		</ul>
 
@@ -45,28 +105,39 @@ $choose_timeslot_ajax_URL = WEBURL.DOCROOT."scripts/parents-evening/students/tim
 					 		 		FROM appointments
 					 		 		INNER JOIN users
 					 		 		ON appointments.student_id = users.id
-									INNER JOIN teachers
-									ON appointments.teacher_id = teachers.id
-					 		 		WHERE teachers.user_id = {$_SESSION['userid']}";
+					 		 		WHERE appointments.teacher_id = {$_SESSION['userid']}";
 
 					$result = mysqli_query($conn, $sql);
 
-					$record = "<div class='row'>";
-						$record .= "<h4 class='col-6'>Forename</h4>";
-						$record .= "<h4 class='col-6'>Surname</h4>";
-					$record .= "</div>";
+					$record = "<table class='table table-hover'>";
+					  $record .= "<thead>";
+							$record .=  "<tr>";
+								$record .= "<th>Forename</th>";
+								$record .= "<th>Surname</th>";
+								$record .= "<th>Start</th>";
+								$record .= "<th>End</th>";
+							$record .= "</tr>";
+						$record .=  "</thead>";
 
-					while($row = mysqli_fetch_assoc($result))
-					{
-						$record .= "<div class='row'>";
-							$record .= "<p class='col-6'>{$row['forename']}</p>";
-							$record .= "<p class='col-6'>{$row['surname']}</p>";
-						$record .= "</div>";
-					}
+						$record .=  "<tbody>";
+
+						while($row = mysqli_fetch_assoc($result))
+						{
+							$record .= "<tr>";
+								$record .= "<td>{$row['forename']}</td>";
+								$record .= "<td>{$row['surname']}</td>";
+								$record .= "<td>{$row['appointment_start']}</td>";
+								$record .= "<td>{$row['appointment_end']}</td>";
+							$record .= "</tr>";
+						}
+						$record .= "</tbody>";
+					$record .= "</table>";
 					echo $record;
 				?>
 
 			</div>
+
+			<?php classesShow(2, $conn); ?>
 
 		</div>
 
@@ -74,7 +145,8 @@ $choose_timeslot_ajax_URL = WEBURL.DOCROOT."scripts/parents-evening/students/tim
 		<?php require($_SERVER['DOCUMENT_ROOT'].DOCROOT.'includes/footer.php'); ?>
 
 	</body>
+
 </html>
 
-<!-- Require modals for login/signup from specified file -->
-<?php require($_SERVER['DOCUMENT_ROOT'].DOCROOT.'includes/modals.php'); ?>
+<!-- Require modals for admin from specified file -->
+<?php require($_SERVER['DOCUMENT_ROOT'].DOCROOT.'includes/admin-modals.php'); ?>

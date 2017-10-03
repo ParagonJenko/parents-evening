@@ -4,7 +4,7 @@ session_start();
 // Includes the database configuration file.
 require($_SERVER['DOCUMENT_ROOT'].'/parents-evening/server/config.php'); //Change to where it is stored in your website.
 
-$header_URL = "Location: ".WEBURL.DOCROOT."pages/parents-evening/admin/";
+$header_URL = "Location: ".WEBURL.DOCROOT."pages/parents-evening/{$_SESSION['status']}/";
 
 // Set serverlog variables
 $ipaddress = $_SERVER['REMOTE_ADDR'];
@@ -22,74 +22,41 @@ switch($table)
 	case "users":
 		$columns = "status, forename, surname, username, email_address, school_id, password";
 		$values = "'{$_POST['status']}', '{$_POST['forename']}', '{$_POST['surname']}', '{$_POST['username']}', '{$_POST['email_address']}', {$_SESSION['school_id']}, '{$password_hash}'";
-		$header_ADD = "?error=7&password_reset={$password_random}";
+		$header_URL .= "?error=7&password_reset={$password_random}";
 		break;
 	case "parents_evenings":
 		$columns = "school_id, evening_date, start_time, end_time";
 		$values = "{$_SESSION['school_id']}, '{$_POST['evening_date']}', '{$_POST['start_time']}', '{$_POST['end_time']}'";
 		break;
-	case "students":
-		$columns = "user_id, teacher_id";
-		$values = "{$_POST['student_id']},{$_POST['teacher_id']}";
+	case "classes":
+		$columns = "class_name, teacher_id, additional_teacher_id, school_id";
+		$values = "'{$_POST['class_name']}',{$_POST['class_teacher']},{$_POST['class_additional_teacher']}, {$_SESSION['school_id']}";
+		break;
+	case "class":
+		$columns = "class_id, student_id";
+		$values = "{$_POST['select_class']},{$_POST['select_student']}";
 		break;
 	default:
-		echo "FAIL";
 		exit();
 }
 
 $sql = "INSERT INTO $table ($columns) VALUES ($values);";
+echo $sql;
 
 if(mysqli_query($conn, $sql))
 {
 	// Success
-	if($status == "teacher")
-	{
-		$last_id = sqli_insert_id($conn);
-		$sql_insert_teacher = "INSERT INTO teachers (user_id, school_id) VALUES ($last_id, {$_SESSION['school_id']})";
+	// Insert record of this action into serverlog
+	$action = "$table has been added where username: {$_POST['username']}";
+	$sql_serverlog = "INSERT INTO server_log (ip_address, user, action, location) VALUES ('$ipaddress', '$user', '$action', '$location')";
+	mysqli_query($conn, $sql_serverlog);
 
-		if(mysqli_query($conn, $sql_insert_teacher))
-		{
-			// Insert record of this action into serverlog
-			$action = "Teacher inserted into database: {$_POST['username']}";
-			$sql_serverlog = "INSERT INTO server_log (ip_address, user, action, location) VALUES ('$ipaddress', '$user', '$action', '$location')";
-			mysqli_query($conn, $sql_serverlog);
-
-			// Closes the database connection
-			mysqli_close($conn);
-			// Sets the redirect location
-			header($header_URL.$header_ADD);
-			// Exits the script
-			exit();
-		}
-		else
-		{
-			// Insert record of this action into serverlog
-			$action = "Teacher failed to be inserted into database: {$_POST['username']}";
-			$sql_serverlog = "INSERT INTO server_log (ip_address, user, action, location) VALUES ('$ipaddress', '$user', '$action', '$location')";
-			mysqli_query($conn, $sql_serverlog);
-
-			// Closes the database connection
-			mysqli_close($conn);
-			// Sets the redirect location
-			header($header_URL);
-			// Exits the script
-			exit();
-		}
-	}
-	else
-	{
-		// Insert record of this action into serverlog
-		$action = "$table has been added where username: {$_POST['username']}";
-		$sql_serverlog = "INSERT INTO server_log (ip_address, user, action, location) VALUES ('$ipaddress', '$user', '$action', '$location')";
-		mysqli_query($conn, $sql_serverlog);
-
-		// Closes the database connection
-		mysqli_close($conn);
-		// Sets the redirect location
-		header($header_URL.$header_ADD);
-		// Exits the script
-		exit();
-	}
+	// Closes the database connection
+	mysqli_close($conn);
+	// Sets the redirect location
+	header($header_URL);
+	// Exits the script
+	exit();
 }
 else
 {

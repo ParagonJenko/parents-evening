@@ -58,7 +58,7 @@ function showSchool($conn)
 
         $record .= "<div class='form-group row'>";
 
-            $record .= "<label for='school_teacher_code' class='col-2 col-form-label'>School Email Address</label>";
+            $record .= "<label for='school_teacher_code' class='col-2 col-form-label'>Teacher Referral Code</label>";
 
             $record .= "<div class='col-10'>";
                 $record .= "<input type='text' readonly class='form-control' name='school_teacher_code' value='{$row['school_teacher_code']}'>";

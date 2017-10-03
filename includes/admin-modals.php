@@ -6,6 +6,7 @@ $add_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/add-script.php";
 $delete_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/delete-script.php";
 
 $admin_reset_password_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/reset-password.php";
+$add_student_to_class_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/add-script.php?table_name=class";
 ?>
 
 <!-- Add Parents Evening Modal -->
@@ -297,6 +298,74 @@ $admin_reset_password_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin
 
 					<div class="form-group">
 						<button type='submit' class='btn btn-success btn-block'>Reset Password</button>
+					</div>
+
+				</form>
+
+			</div>
+
+			<div class="modal-footer">
+
+				<button type="submit" class="btn btn-danger mr-auto" data-dismiss="modal"><i class="fa fa-remove"></i> Cancel</button>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<!-- Form Modal -->
+<div class="modal fade text-center" id="add-to-class-form-modal">
+
+	<div class="modal-dialog">
+
+		<div class="modal-content">
+
+			<div class="modal-header">
+
+				<h4 class="modal-title"> Add to Class Form</h4>
+				<i class="fa fa-remove" data-dismiss="modal"></i>
+
+			</div>
+
+			<div class="modal-body">
+
+				<form role="form" id="add-to-class-form" method="post" action="<?php echo $add_student_to_class_script_URL; ?>">
+
+					<div class="form-group">
+						<label for="class_id">Select Class</label>
+						<select required class="form-control" name="select_class">
+							<?php
+							$sql = "SELECT * FROM classes WHERE school_id = {$_SESSION['school_id']} AND teacher_id = {$_SESSION['userid']}";
+							$result = mysqli_query($conn, $sql);
+							while($row = mysqli_fetch_assoc($result))
+							{
+								$record = "<option value='{$row['id']}'>{$row['class_name']}</option>";
+								echo $record;
+							}
+							?>
+						</select>
+					</div>
+
+					<div class="form-group">
+						<label for="student_id">Select Student</label>
+						<select required class="form-control" name="select_student">
+							<?php
+							$sql = "SELECT * FROM users WHERE school_id = {$_SESSION['school_id']} AND status = 'student'";
+							$result = mysqli_query($conn, $sql);
+							while($row = mysqli_fetch_assoc($result))
+							{
+								$record = "<option value='{$row['id']}'>{$row['forename']} {$row['surname']}</option>";
+								echo $record;
+							}
+							?>
+						</select>
+					</div>
+
+					<div class="form-group">
+						<button type='submit' class='btn btn-success btn-block'>Add Student to Class</button>
 					</div>
 
 				</form>

@@ -31,32 +31,56 @@ function showUsers($conn, $status)
 
 	$result = mysqli_query($conn, $sql);
 
-	while($row = mysqli_fetch_assoc($result))
+	while($row = mysqli_fetch_array($result))
 	{
 		switch($status)
 		{
 			case "admin":
 				$record = "<tr>";
-					$record .= "<th scope='row'>{$row['id']}</th>";
-					$record .= "<td>{$row['username']}</td>";
-					$record .= "<td>{$row['forename']}</td>";
-					$record .= "<td>{$row['surname']}</td>";
+					$record .= "<th scope='row'>{$row[0]}</th>";
+					$record .= "<td>{$row[4]}</td>";
+					$record .= "<td>{$row[2]}</td>";
+					$record .= "<td>{$row[3]}</td>";
 				$record .= "</tr>";
 				break;
 			case "teacher":
+				$sql_get_classes = "SELECT classes.class_name
+				FROM classes
+				WHERE classes.teacher_id = {$row[0]}";
+				$result_get_classes = mysqli_query($conn, $sql_get_classes);
+
 				$record = "<tr>";
-					$record .= "<th scope='row'>{$row['id']}</th>";
-					$record .= "<td>{$row['username']}</td>";
-					$record .= "<td>{$row['forename']}</td>";
-					$record .= "<td>{$row['surname']}</td>";
+					$record .= "<th scope='row'>{$row[0]}</th>";
+					$record .= "<td>{$row[4]}</td>";
+					$record .= "<td>{$row[2]}</td>";
+					$record .= "<td>{$row[3]}</td>";
+					$record .= "<td>";
+					while($row_get_classes = mysqli_fetch_assoc($result_get_classes))
+					{
+						$record .= "{$row_get_classes['class_name']} ";
+					}
+					$record .= "</td>";
 				$record .= "</tr>";
 				break;
 			case "student":
+				$sql_get_classes = "SELECT class.*, classes.class_name
+				FROM class
+				INNER JOIN classes
+				ON class.class_id = classes.id
+				WHERE class.student_id = {$row[0]}";
+				$result_get_classes = mysqli_query($conn, $sql_get_classes);
+
 				$record = "<tr>";
-					$record .= "<th scope='row'>{$row['id']}</th>";
-					$record .= "<td>{$row['username']}</td>";
-					$record .= "<td>{$row['forename']}</td>";
-					$record .= "<td>{$row['surname']}</td>";
+					$record .= "<th scope='row'>{$row[0]}</th>";
+					$record .= "<td>{$row[4]}</td>";
+					$record .= "<td>{$row[2]}</td>";
+					$record .= "<td>{$row[3]}</td>";
+					$record .= "<td>";
+					while($row_get_classes = mysqli_fetch_assoc($result_get_classes))
+					{
+						$record .= "{$row_get_classes['class_name']} ";
+					}
+					$record .= "</td>";
 				$record .= "</tr>";
 				break;
 		}

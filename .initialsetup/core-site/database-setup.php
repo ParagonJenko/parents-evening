@@ -5,7 +5,7 @@ require($_SERVER['DOCUMENT_ROOT']."/parents-evening/server/config.php");
 // --- Create Root Users ---
 
 // Hash Default Root Pass
-$passwordhash = password_hash("root1234", PASSWORD_DEFAULT);
+$passwordhash = password_hash("1234", PASSWORD_DEFAULT);
 
 function referral_random()
 {
@@ -25,52 +25,46 @@ $teacher_code_3 = referral_random();
 // SQL to create users table
 $sql_statement = "INSERT INTO school_data (school_name, school_address, school_email_address, school_referral, school_teacher_code)
 VALUES
-('Hall Cross Academy','Thorne Rd, Doncaster DN1 2HY','hallx@hallcross.com', '$referral_1', '$teacher_code_1'),
-('Balby Carr Academy','Weston Rd, Doncaster DN4 8ND','bca@balbycarr.org.uk', '$referral_2', '$teacher_code_2'),
-('Outwood Academy','Armthorpe Rd, Doncaster DN2 5QD','outwood@academy.com', '$referral_3', '$teacher_code_3');
+('Hall Cross Academy','Thorne Rd, Doncaster DN1 2HY','hallx@hallcross.com', '$referral_1', '$teacher_code_1');
 
 INSERT INTO users (status, forename, surname, username, email_address, school_id, password) VALUES
-('student', 'Sarah', 'Brains', 'sbrains', 'sbrains@student.com', 1, '$passwordhash'), -- 1
-('student', 'Alex', 'Trains', 'atrains', 'atrains@student.com', 1, '$passwordhash'), -- 2
-('student', 'Jake', 'Rains', 'jrains', 'jrains@student.com', 2, '$passwordhash'), -- 3
-('student', 'Ben', 'Lanes', 'blanes', 'blanes@student.com', 3, '$passwordhash'), -- 4
+('student', 'Jake', 'Harris', 'jharris', 'jharris@hallcrossacademy.co.uk', 1, '$passwordhash'), -- 1
+('student', 'Jake', 'Walker', 'jwalker', 'jwalker@hallcrossacademy.co.uk', 1, '$passwordhash'), -- 2
+('student', 'Ben', 'Ashurst', 'bashurst', 'bashurst@hallcrossacademy.co.uk', 1, '$passwordhash'), -- 3
+('student', 'Alex', 'Jenkinson', 'ajenkinson', 'ajenkinson@hallcrossacademy.co.uk', 1, '$passwordhash'), -- 4
 
-('teacher', 'Phil', 'Wayne', 'pwayne', 'pwayne@url.com', 1, '$passwordhash'), -- 5
-('teacher', 'Brenda', 'Hull', 'bhull', 'bhull@url.com', 1, '$passwordhash'), -- 6
-('teacher', 'Travis', 'Alderson', 'talderson', 'talderson@url.com', 2, '$passwordhash'), -- 7
-('teacher', 'Sandra', 'Random', 'srandom', 'srandom@url.com', 3, '$passwordhash'), -- 8
+('teacher', 'Allen', 'Liu', 'aliu', 'aliu@hallcrossacademy.co.uk', 1, '$passwordhash'), -- 5
+('teacher', 'Dave', 'Tucker', 'dtucker', 'dtucker@hallcrossacademy.co.uk', 1, '$passwordhash'), -- 6
+('teacher', 'Lainey', 'Riley', 'lriley', 'lriley@hallcrossacademy.co.uk', 1, '$passwordhash'), -- 7
+('teacher', 'John', 'Doe', 'jdoe', 'jdoe@hallcrossacademy.co.uk', 1, '$passwordhash'), -- 8
 
-('admin', 'HallCross', 'Admin', 'hallcross_admin', 'hallx@hallcross.com', 1, '$passwordhash'), -- 9
-('admin', 'BalbyCarr', 'Admin', 'balbycarr_admin', 'bca@balbycarr.org.uk', 2, '$passwordhash'), -- 10
-('admin', 'Outwood', 'Admin', 'outwood_admin', 'outwood@academy.com', 3, '$passwordhash'); -- 11
+('admin', 'HallCross', 'Admin', 'hallcross_admin', 'hallx@hallcross.com', 1, '$passwordhash'); -- 9
 
-INSERT INTO teachers (user_id, school_id)
-VALUES
-(5, 1),
-(6, 1),
-(7, 2),
-(8, 3);
+INSERT INTO classes (class_name, teacher_id, additional_teacher_id, school_id) VALUES
+('13AB/IT1', 5, NULL, 1), -- 1
+('13D/CS1', 5, 6, 1), -- 2
+('13B/EN1', 7, NULL, 1), -- 3
+('13C/MA1', 8, NULL, 1); -- 4
 
-INSERT INTO students (user_id, teacher_id)
-VALUES
+INSERT INTO class (class_id, student_id) VALUES
 (1, 1),
-(1, 2),
 (2, 2),
 (3, 3),
-(4, 4);
+(4, 4),
+(4, 1),
+(3, 2);
 
 INSERT INTO parents_evenings (school_id, evening_date, start_time, end_time, available)
 VALUES
-(1, '2017-10-01', '15:00', '20:30', 'y'),
-(2, '2017-10-01', '17:00', '20:00', 'n'),
-(3, '2017-10-01', '18:00', '21:00', 'n');
+(1, '2017-10-01', '15:30', '20:00', 'y'),
+(1, '2017-12-12', '15:30', '21:00', 'y');
 
 INSERT INTO appointments (teacher_id, student_id, parents_evening_id, appointment_start, appointment_end)
 VALUES
-(1, 1, 1, '15:00', '15:05'),
-(2, 1, 1, '15:05', '15:10'),
-(2, 2, 2, '17:25', '17:30'),
-(3, 3, 3, '18:45', '18:50');";
+(5, 1, 1, '15:30', '15:35'),
+(8, 1, 1, '15:45', '15:50'),
+(5, 2, 1, '15:40', '15:45'),
+(7, 3, 1, '15:30', '15:35');";
 
 echo $sql_statement;
 
