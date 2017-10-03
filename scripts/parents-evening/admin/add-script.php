@@ -4,7 +4,7 @@ session_start();
 // Includes the database configuration file.
 require($_SERVER['DOCUMENT_ROOT'].'/parents-evening/server/config.php'); //Change to where it is stored in your website.
 
-$header_URL = "Location: ".WEBURL.DOCROOT."pages/parents-evening/admin/";
+$header_URL = "Location: ".WEBURL.DOCROOT."pages/parents-evening/{$_SESSION['status']}/";
 
 // Set serverlog variables
 $ipaddress = $_SERVER['REMOTE_ADDR'];
