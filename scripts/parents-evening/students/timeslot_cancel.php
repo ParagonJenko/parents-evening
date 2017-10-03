@@ -9,13 +9,17 @@ $ipaddress = $_SERVER['REMOTE_ADDR'];
 $user = $_SESSION['username'];
 $location = "timeslot-cancel.php";
 
+// Set the URL To redirect a user to on header call
 $header_URL = "Location: ".WEBURL.DOCROOT."pages/parents-evening/student/parents-evening.php?id={$_GET['id']}";
 
+// Get the variables needed for this page
 $teacher_id = $_GET['teacherid'];
 $student_id = $_SESSION['userid'];
 
+// Create the SQL statement to delete from the table appointments where the two values are equal
 $sql_delete_appointment = "DELETE FROM appointments WHERE teacher_id = $teacher_id AND student_id = $student_id";
 
+// Check ifthe query was successful
 if(mysqli_query($conn, $sql_delete_appointment))
 {
 	// Success

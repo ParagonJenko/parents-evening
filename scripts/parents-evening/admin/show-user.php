@@ -4,35 +4,52 @@ session_start();
 // Includes the database configuration file.
 require($_SERVER['DOCUMENT_ROOT'].'/parents-evening/server/config.php'); //Change to where it is stored in your website.
 
+// Function to show the users with two parameters the database connection and the status needed
 function showUsers($conn, $status)
 {
+	// Base pagination URL for admin page
 	$pagination_URL = WEBURL.DOCROOT."pages/parents-evening/admin/";
 
+	// SQL statement to select all users where the school_id is equal to the users and the status is equal to the variable provided in the function
 	$sql = "SELECT * FROM users WHERE school_id = {$_SESSION['school_id']} AND status = '$status'";
 
+	// Store the result within a variable
 	$result = mysqli_query($conn, $sql);
 
+	// Get the amount of rows in the result variable
 	$number_of_results  = mysqli_num_rows($result);
+	// How many results to display on a page
 	$results_per_page = 8;
 
+	// Calculate the number of pages to display and rounds up to the next integer
 	$number_of_pages = ceil($number_of_results/$results_per_page);
 
+	// Check if the page variable is set
 	if(isset($_GET[$status.'-page']))
 	{
+		// Page variable set
 		$page = $_GET[$status.'-page'];
+		// Find what will be the first result of the page
 		$this_page_first_result = ($page-1)*$results_per_page;
+		// Select the users to be displayed using a query that OFFSETs the results
 		$sql = "SELECT * FROM users WHERE school_id = {$_SESSION['school_id']} AND status = '$status' LIMIT $results_per_page OFFSET $this_page_first_result";
 	}
 	else
 	{
+		// Page variable not set
+		// Select the users from the first result to where the limit is
 		$sql = "SELECT * FROM users WHERE school_id = {$_SESSION['school_id']} AND status = '$status' LIMIT $results_per_page";
+		// Set the page variable as 1
 		$page = 1;
 	}
 
+	// Store the result within a variable
 	$result = mysqli_query($conn, $sql);
 
+	// Loop through every record thats in the query
 	while($row = mysqli_fetch_array($result))
 	{
+		// W
 		switch($status)
 		{
 			case "admin":

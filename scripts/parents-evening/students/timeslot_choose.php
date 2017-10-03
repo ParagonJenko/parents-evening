@@ -9,12 +9,15 @@ $ipaddress = $_SERVER['REMOTE_ADDR'];
 $user = $_SESSION['username'];
 $location = "timeslot-choose.php";
 
+// Set a URL to send the redirect header to a different page
 $header_URL = "Location: ".WEBURL.DOCROOT."pages/parents-evening/student/parents-evening.php?id={$_POST['evening_id']}";
 
+// Insert into the appointments table where the columns equal the value
 $sql_insert_appointments = "INSERT INTO appointments (teacher_id, parents_evening_id, student_id, appointment_start, appointment_end)
 							VALUES
 							({$_POST['teacher_id']},{$_POST['evening_id']},{$_POST['student_id']},'{$_POST['appointment_start']}','{$_POST['appointment_end']}')";
 
+// Check that the query was successful
 if(mysqli_query($conn, $sql_insert_appointments))
 {
 	// Success

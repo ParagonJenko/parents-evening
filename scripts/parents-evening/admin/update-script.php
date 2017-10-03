@@ -4,48 +4,54 @@ session_start();
 // Includes the database configuration file.
 require($_SERVER['DOCUMENT_ROOT'].'/parents-evening/server/config.php'); //Change to where it is stored in your website.
 
-$header_URL = "Location: ".WEBURL.DOCROOT."pages/parents-evening/admin/";
+// Header to redirect the user to their respective pages using their status
+$header_URL = "Location: ".WEBURL.DOCROOT."pages/parents-evening/{$_SESSION['status']}/";
 
 // Set serverlog variables
 $ipaddress = $_SERVER['REMOTE_ADDR'];
 $user = $_SESSION['username'];
 $location = "update-script.php";
 
+// Get the variable of the table name from the URL
 $table = $_GET['table_name'];
 
+// Get the ID from the variable and set it in a variable
+$id = $_GET['id'];
+
+// Switch loop for the different tables
 switch($table)
 {
-	case "user":
-		$columns = "status, forename, surname, username, email_address, school_id, password";
-		$values = "'status','','','','','',{$_SESSION['school_id']},{$password_hash}";
-		break;
+	// If the table is parents_evenings
 	case "parents_evenings":
+		// Switch loop to check the availability
 		switch($_GET['current_availability'])
 		{
+			// If the availability is yes change it to no
 			case "y":
 				$available = "n";
 				break;
+			// If the availability is no change it to yes
 			case "n":
 				$available = "y";
 				break;
 		}
+		// Set the value of available to the variable
 		$values = "available = '$available'";
-		$id = $_GET['id'];
 		break;
+	// If the table is school_data
 	case "school_data":
-		echo "School D";
+		// Set the columns equal to the variable provided by the form using the POST method
 		$values = "school_name = '{$_POST['school_name']}', school_address = '{$_POST['school_address']}', school_email_address = '{$_POST['school_email_address']}'";
-		$id = $_GET['id'];
 		break;
 }
 
+// SQL statement to update the table with the values at the ID provided
 $sql = "UPDATE $table SET $values WHERE id = $id";
 
-echo $sql;
-
+// Check if the query is successful
 if(mysqli_query($conn, $sql))
 {
-	// Success
+	// Query successful
 	// Insert record of this action into serverlog
 	$action = "$table has been updated at ID: $id";
 	$sql_serverlog = "INSERT INTO server_log (ip_address, user, action, location) VALUES ('$ipaddress', '$user', '$action', '$location')";
@@ -60,7 +66,7 @@ if(mysqli_query($conn, $sql))
 }
 else
 {
-	// Fail
+	// Query unsuccessful
 	// Insert record of this action into serverlog
 	$action = "$table has been failed to be updated at ID: $id";
 	$sql_serverlog = "INSERT INTO server_log (ip_address, user, action, location) VALUES ('$ipaddress', '$user', '$action', '$location')";
@@ -73,5 +79,4 @@ else
 	// Exits the script
 	exit();
 }
-
 ?>
