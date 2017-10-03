@@ -272,13 +272,11 @@ $choose_timeslot_ajax_URL = WEBURL.DOCROOT."scripts/parents-evening/students/tim
 				<?php
 
 					$sql_select_times = "SELECT appointments.*, users.surname
-										FROM appointments
-										INNER JOIN teachers
-										ON appointments.teacher_id = teachers.id
-										INNER JOIN users
-										ON teachers.user_id = users.id
-										WHERE appointments.student_id = {$_SESSION['userid']} AND appointments.parents_evening_id = $parents_evening_id
-										ORDER BY appointment_start ASC";
+					FROM appointments
+					INNER JOIN users
+					ON appointments.teacher_id = users.id
+					WHERE appointments.student_id = {$_SESSION['userid']} AND appointments.parents_evening_id = $parents_evening_id
+					ORDER BY appointment_start ASC";
 
 					$result = mysqli_query($conn, $sql_select_times);
 
