@@ -46,6 +46,8 @@ $choose_timeslot_ajax_URL = WEBURL.DOCROOT."scripts/parents-evening/students/tim
 						break;
 					case 2:
 						$record = "<div class='tab-pane fade' id='class-{$row['id']}'>";
+						$record .= "<a class='btn btn-success' data-toggle='modal' href='#add-to-class-form-modal'><i class='fa fa-plus-circle'></i> Student to Class</a>";
+
 						$sql_select_users = "SELECT class.*, users.forename, users.surname
 						FROM class
 						INNER JOIN users
@@ -135,7 +137,7 @@ $choose_timeslot_ajax_URL = WEBURL.DOCROOT."scripts/parents-evening/students/tim
 
 			</div>
 
-			<?php  classesShow(2, $conn); ?>
+			<?php classesShow(2, $conn); ?>
 
 		</div>
 
@@ -143,7 +145,8 @@ $choose_timeslot_ajax_URL = WEBURL.DOCROOT."scripts/parents-evening/students/tim
 		<?php require($_SERVER['DOCUMENT_ROOT'].DOCROOT.'includes/footer.php'); ?>
 
 	</body>
+
 </html>
 
-<!-- Require modals for login/signup from specified file -->
-<?php require($_SERVER['DOCUMENT_ROOT'].DOCROOT.'includes/modals.php'); ?>
+<!-- Require modals for admin from specified file -->
+<?php require($_SERVER['DOCUMENT_ROOT'].DOCROOT.'includes/admin-modals.php'); ?>

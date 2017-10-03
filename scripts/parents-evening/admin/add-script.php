@@ -22,7 +22,7 @@ switch($table)
 	case "users":
 		$columns = "status, forename, surname, username, email_address, school_id, password";
 		$values = "'{$_POST['status']}', '{$_POST['forename']}', '{$_POST['surname']}', '{$_POST['username']}', '{$_POST['email_address']}', {$_SESSION['school_id']}, '{$password_hash}'";
-		$header_ADD = "?error=7&password_reset={$password_random}";
+		$header_URL .= "?error=7&password_reset={$password_random}";
 		break;
 	case "parents_evenings":
 		$columns = "school_id, evening_date, start_time, end_time";
@@ -37,11 +37,11 @@ switch($table)
 		$values = "{$_POST['select_class']},{$_POST['select_student']}";
 		break;
 	default:
-		echo "FAIL";
 		exit();
 }
 
 $sql = "INSERT INTO $table ($columns) VALUES ($values);";
+echo $sql;
 
 if(mysqli_query($conn, $sql))
 {
@@ -54,7 +54,7 @@ if(mysqli_query($conn, $sql))
 	// Closes the database connection
 	mysqli_close($conn);
 	// Sets the redirect location
-	header($header_URL.$header_ADD);
+	header($header_URL);
 	// Exits the script
 	exit();
 }

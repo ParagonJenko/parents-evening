@@ -527,6 +527,8 @@ function removeTeacherStudentClass($conn)
 		<?php require($_SERVER['DOCUMENT_ROOT'].DOCROOT.'includes/footer.php'); ?>
 
 	</body>
+	
 </html>
+
 <!-- Require modals for admin from specified file -->
 <?php require($_SERVER['DOCUMENT_ROOT'].DOCROOT.'includes/admin-modals.php'); ?>
