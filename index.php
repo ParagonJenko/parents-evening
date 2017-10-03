@@ -27,6 +27,7 @@ require($_SERVER['DOCUMENT_ROOT']."/parents-evening/server/config.php");
 
 			<h1>Parents Evening System</h1>
 			<p>Welcome to a bespoke parent's evening system created for students by a student.</p>
+			<p>To access your school please login or signup here: <a class="btn btn-outline-success" data-toggle="modal" href="#login-modal">Login/Signup</a></p>
 
 		</div>
 
@@ -64,7 +65,8 @@ require($_SERVER['DOCUMENT_ROOT']."/parents-evening/server/config.php");
 
 					<h4>Student</h4>
 
-					<p>X</p>
+					<p>Access their appointment times</p>
+					<p>Schedule and cancel appointments at will</p>
 
 				</div>
 
@@ -72,7 +74,8 @@ require($_SERVER['DOCUMENT_ROOT']."/parents-evening/server/config.php");
 
 					<h4>Teachers</h4>
 
-					<p>X</p>
+					<p>View all appointments schedule</p>
+					<p>Add and remove students from classes</p>
 
 				</div>
 
@@ -80,17 +83,9 @@ require($_SERVER['DOCUMENT_ROOT']."/parents-evening/server/config.php");
 
 					<h4>Admin</h4>
 
-					<p>X</p>
+					<p>Full access to manage users and school details</p>
 
 				</div>
-
-			</div>
-
-			<div class="container-fluid">
-
-				<h4>Technical</h4>
-
-				<p>X</p>
 
 			</div>
 
