@@ -222,7 +222,7 @@ $user_signup_script_URL = WEBURL.DOCROOT."scripts/parents-evening/signup/user-si
 
 			</div>
 
-			<div class="modal-body">
+			<div class="modal-body" id="timeslot_modal">
 
 					<!-- Dynamic AJAX data displayed here -->
 

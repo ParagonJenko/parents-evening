@@ -20,8 +20,6 @@ require($_SERVER['DOCUMENT_ROOT']."/parents-evening/server/config.php");
 	<!-- Require navbar from specified file -->
 	<?php require($_SERVER['DOCUMENT_ROOT'].DOCROOT."includes/navbar.php"); ?>
 
-	<?php require($_SERVER['DOCUMENT_ROOT'].DOCROOT."includes/messages.php"); ?>
-
 	<div class="container-fluid">
 		<div class="container-fluid">
 

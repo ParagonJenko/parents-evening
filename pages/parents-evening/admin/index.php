@@ -95,10 +95,6 @@ function removeTeacherStudentClass($conn)
 
 ?>
 
-<!-- TEMPLATE DESIGNED BY ALEX JENKINSON -->
-<!-- DATE: 27/06/2017 -->
-<!-- FREE TO USE -->
-
 <!doctype html>
 <html>
 	<!-- Require head from specified file -->
@@ -108,8 +104,6 @@ function removeTeacherStudentClass($conn)
 
 		<!-- Require navbar from specified file -->
 		<?php require($_SERVER['DOCUMENT_ROOT'].DOCROOT.'includes/navbar.php'); ?>
-
-		<?php require($_SERVER['DOCUMENT_ROOT'].DOCROOT."includes/messages.php"); ?>
 
 		<?php include($_SERVER['DOCUMENT_ROOT'].DOCROOT."scripts/parents-evening/admin/show-user.php"); ?>
 
@@ -527,7 +521,7 @@ function removeTeacherStudentClass($conn)
 		<?php require($_SERVER['DOCUMENT_ROOT'].DOCROOT.'includes/footer.php'); ?>
 
 	</body>
-	
+
 </html>
 
 <!-- Require modals for admin from specified file -->

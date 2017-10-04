@@ -13,7 +13,7 @@ $ipaddress = $_SERVER['REMOTE_ADDR'];
 $user = $_SESSION['username'];
 $location = "session_active.php";
 
-
+// Check if there is an active session
 if(isset($_SESSION['status']))
 {
 	// Insert record of this action into serverlog
@@ -31,7 +31,7 @@ else
 	// Closes the database connection
 	mysqli_close($conn);
 	// Sets the redirect location
-	header($header_url."?error=5");
+	header($header_url);
 	// Exits the script
 	exit();
 }

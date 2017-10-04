@@ -4,16 +4,21 @@ session_start();
 // Includes the database configuration file.
 require($_SERVER['DOCUMENT_ROOT'].'/parents-evening/server/config.php'); //Change to where it is stored in your website.
 
+// Set a URL for the user to be redirected to
 $header_URL = "Location: ".WEBURL.DOCROOT."pages/parents-evening/{$_SESSION['status']}/";
 
 // Set serverlog variables
 $ipaddress = $_SERVER['REMOTE_ADDR'];
 $user = $_SESSION['username'];
 $location = "delete-script.php";
+
+// Get the name of the table from the URL
 $table = $_GET['table_name'];
 
+// SQL statement to delete from the table provided where the ID is equal to either the POST or GET value
 $sql = "DELETE FROM {$table} WHERE id = {$_POST['delete_id']}{$_GET['delete_id']}";
 
+// Check the query was successful
 if(mysqli_query($conn, $sql))
 {
 	// Success

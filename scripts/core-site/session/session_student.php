@@ -11,11 +11,14 @@ $header_url = "Location: ".WEBURL.DOCROOT;
 // Set serverlog variables
 $ipaddress = $_SERVER['REMOTE_ADDR'];
 $user = $_SESSION['username'];
-$location = "session_user.php";
+$location = "session_student.php";
 
+// Get the user status
 $user_status = $_SESSION['status'];
+// Set the status needed
 $status_needed = "student";
 
+// Check that the values are equal to eachother
 if($user_status == $status_needed)
 {
 	// Insert record of this action into serverlog
@@ -33,7 +36,7 @@ else
 	// Closes the database connection
 	mysqli_close($conn);
 	// Sets the redirect location
-	header($header_url."?error=6");
+	header($header_url);
 	// Exits the script
 	exit();
 }

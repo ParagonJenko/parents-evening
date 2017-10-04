@@ -22,7 +22,6 @@ if($_SERVER['REQUEST_METHOD'] = "POST")
 	$password = mysqli_real_escape_string($conn, $_POST["password"]);
 
 	// SQL select statement to any user with the email provided.
-	//$sql = "SELECT * FROM users WHERE email = '$email'";
 	$sql = "SELECT * FROM users WHERE username = '$username'";
 
 	// Runs the SQL statement with the connection created in config.php
@@ -52,11 +51,9 @@ if($_SERVER['REQUEST_METHOD'] = "POST")
 					$_SESSION['status'] = $row['status'];
 					$_SESSION['username'] = $row['username'];
 					$_SESSION['school_id'] = $row['school_id'];
-					//$_SESSION['username'] = $row['username'];
 
 					// Set user here as session email is null until here
-					$user = $_SESSION['email'];
-					// $user = $_SESSION['username'];
+					$user = $_SESSION['username'];
 
 				}
 
@@ -82,7 +79,7 @@ if($_SERVER['REQUEST_METHOD'] = "POST")
 				// Closes the database connection
 				mysqli_close($conn);
 				// Sets the redirect location
-				header($header_url."?error=4");
+				header($header_url);
 				// Exits the script
 				exit();
 			}
@@ -98,7 +95,7 @@ if($_SERVER['REQUEST_METHOD'] = "POST")
 		// Closes the database connection
 		mysqli_close($conn);
 		// Sets the redirect location
-		header($header_url."?error=6");
+		header($header_url);
 		// Exits the script
 		exit();
 	}
@@ -113,7 +110,7 @@ else
 	// Closes the database connection
 	mysqli_close($conn);
 	// Sets the redirect location
-	header($header_url."?error=3");
+	header($header_url);
 	// Exits the script
 	exit();
 }

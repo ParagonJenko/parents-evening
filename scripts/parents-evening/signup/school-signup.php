@@ -70,7 +70,7 @@ if($_SERVER['REQUEST_METHOD'] = "POST")
 		// Closes the database connection
 		mysqli_close($conn);
 		// Sets the redirect location
-		header($header_url."?error=1");
+		header($header_url);
 		// Exits the script
 		exit();
 	}
@@ -114,7 +114,7 @@ if($_SERVER['REQUEST_METHOD'] = "POST")
 				// Closes the database connection
 				mysqli_close($conn);
 				// Sets the redirect location
-				header($header_url."?error=9");
+				header($header_url);
 				// Exits the script
 				exit();
 			}
@@ -128,7 +128,7 @@ if($_SERVER['REQUEST_METHOD'] = "POST")
 				// Closes the database connection
 				mysqli_close($conn);
 				// Sets the redirect location
-				header($header_url."?error=2");
+				header($header_url);
 				// Exits the script
 				exit();
 			}
@@ -143,7 +143,7 @@ if($_SERVER['REQUEST_METHOD'] = "POST")
 			// Closes the database connection
 			mysqli_close($conn);
 			// Sets the redirect location
-			header($header_url."?error=2");
+			header($header_url);
 			// Exits the script
 			exit();
 		}
@@ -161,7 +161,7 @@ else
 	// Closes the database connection
 	mysqli_close($conn);
 	// Sets the redirect location
-	header($header_url."?error=3");
+	header($header_url);
 	// Exits the script
 	exit();
 }
