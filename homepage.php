@@ -4,12 +4,10 @@ session_start();
 
 // Includes the database configuration file.
 require($_SERVER['DOCUMENT_ROOT']."/parents-evening/server/config.php");
-require($_SERVER['DOCUMENT_ROOT'].DOCROOT."scripts/core-site/session/session_active.php"); 
-?>
 
-<!-- TEMPLATE DESIGNED BY ALEX JENKINSON -->
-<!-- DATE: 27/06/2017 -->
-<!-- FREE TO USE -->
+// Script to check session is active
+require($_SERVER['DOCUMENT_ROOT'].DOCROOT."scripts/core-site/session/session_active.php");
+?>
 
 <!doctype html>
 <html>
@@ -20,7 +18,6 @@ require($_SERVER['DOCUMENT_ROOT'].DOCROOT."scripts/core-site/session/session_act
 
 	<!-- Require navbar from specified file -->
 	<?php require($_SERVER['DOCUMENT_ROOT'].DOCROOT."includes/navbar.php"); ?>
-	<?php require($_SERVER['DOCUMENT_ROOT'].DOCROOT."includes/messages.php"); ?>
 
 	<h1>Welcome to <?php $sql = "SELECT * FROM school_data WHERE id = {$_SESSION['school_id']}"; $result = mysqli_query($conn, $sql); $row = mysqli_fetch_assoc($result); echo $row['school_name'] . " "; ?>Parents Evening Web System</h1>
 	<p>You can login to your account on the navigation bar to schedule appointments.</p>

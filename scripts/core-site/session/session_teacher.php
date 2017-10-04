@@ -13,7 +13,9 @@ $ipaddress = $_SERVER['REMOTE_ADDR'];
 $user = $_SESSION['username'];
 $location = "session_teacher.php";
 
+// Get the user status
 $user_status = $_SESSION['status'];
+// Set the status needed
 $status_needed = "teacher";
 
 if($user_status == $status_needed)
@@ -33,7 +35,7 @@ else
 	// Closes the database connection
 	mysqli_close($conn);
 	// Sets the redirect location
-	header($header_url."?error=5");
+	header($header_url);
 	// Exits the script
 	exit();
 }
