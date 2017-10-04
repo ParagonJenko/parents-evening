@@ -1,4 +1,0 @@
-[30-Jun-2017 14:03:55 Europe/London] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home/ebfccbbe/public_html/testing/template/scripts/core-site/account/login.php on line 34
-[30-Jun-2017 14:04:18 Europe/London] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home/ebfccbbe/public_html/testing/template/scripts/core-site/account/login.php on line 34
-[30-Jun-2017 14:04:31 Europe/London] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home/ebfccbbe/public_html/testing/template/scripts/core-site/account/login.php on line 34
-[30-Jun-2017 14:05:34 Europe/London] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home/ebfccbbe/public_html/testing/template/scripts/core-site/account/login.php on line 34
