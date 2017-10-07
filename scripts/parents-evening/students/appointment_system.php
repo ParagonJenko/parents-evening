@@ -4,6 +4,7 @@ session_start();
 // Includes the database configuration file.
 require($_SERVER['DOCUMENT_ROOT'].'/parents-evening/server/config.php'); //Change to where it is stored in your website.
 
+// Display the appointments already chosen by a user
 function displayTimetable($conn)
 {
 	// SQL statement to show appointments that a user has taken
@@ -34,17 +35,20 @@ function displayTimetable($conn)
 	}
 }
 
+// Output the pills to include in the tabs
 function showPills($conn, $row)//Y
 {
 	// Create a pill for the class
 	$record = "<li class='nav-item'>";
 		$record .= "<a class='nav-link' id='pills-home-tab' data-toggle='pill' href='#teacher-{$row['id']}'>{$row['surname']}</a>";
 	$record .= "</li>";
+
 	// Output the record
 	echo $record;
 };
 
-function checkClassesUserIn($conn, $pill_tab)//Y
+// Check the classes that a user is a part of
+function checkClassesUserIn($conn, $pill_tab)
 {
 	// SQL to check the classes that a user is in
 	$sql_check_classes = "SELECT users.surname, users.id
@@ -61,11 +65,14 @@ function checkClassesUserIn($conn, $pill_tab)//Y
 	// Loop through each of the classes in the result set
 	while($row = mysqli_fetch_assoc($result))
 	{
+		// Check which function to call
 		switch($pill_tab)
 		{
+			// If the condition equals 1 then run showPills script
 			case 1:
 				showPills($conn, $row);
 				break;
+			// If the conditione equals 2 then run showTab script
 			case 2:
 				showTab($conn, $row);
 				break;
@@ -74,8 +81,10 @@ function checkClassesUserIn($conn, $pill_tab)//Y
 	}
 };
 
+// Function to get the start and finish times for a parents-evening
 function getParentsEveningsTimes($conn, $selector)//Y
 {
+	// Get the parents evening ID from the URL
 	$parents_evening_id = $_GET['id'];
 
 	// SQL statement to select the parents evening times
@@ -103,6 +112,7 @@ function getParentsEveningsTimes($conn, $selector)//Y
 	}
 };
 
+// Function to check if there is already an appointment displayed
 function checkIfAlreadyAppointment($conn, $teacher_id, $start_time, $end_time)
 {
 	// SQL to check if there is already an appointment
@@ -114,14 +124,17 @@ function checkIfAlreadyAppointment($conn, $teacher_id, $start_time, $end_time)
 	// Check if there any rows returned by the query
 	if(mysqli_num_rows($result) > 0)
 	{
+		// Return the string
 		return "secondary' disabled>";
 	}
 	else
 	{
+		// Return the string
 		return "secondary' data-toggle='modal' data-target='#choose-timeslot-modal' onClick=\"chooseTimeslot('{$_SESSION['userid']}','{$teacher_id}','{$start_time}','{$end_time}')\">";
 	}
 };
 
+// Function to check whether to display the cancel appointment button
 function checkToDisplayCancelButton($conn, $teacher_id)
 {
 	// Variable to store a URL for deleting the record
@@ -136,10 +149,12 @@ function checkToDisplayCancelButton($conn, $teacher_id)
 	// Check if there any rows returned by the query
 	if(mysqli_num_rows($result) > 0)
 	{
+		// Return the string
 		return "<a class='btn btn-block btn-warning' href='$cancel_appointment_script?teacherid=$teacher_id&id={$_GET['id']}'>Cancel Appointment</a>";
 	}
-}
+};
 
+// Function to check if the time has been taken, and output the visual data for the button
 function checkIfTimeTaken($conn, $start_time, $teacher_id, $end_time)
 {
 	// SQL to check that the appointment is not taken where the start time, teacher id and the parents evening id all match
@@ -185,13 +200,14 @@ function checkIfTimeTaken($conn, $start_time, $teacher_id, $end_time)
 		}
 		else
 		{
-			// If there is a row returned, return the string
+			// If there is not a row returned, return the string from the function
 			return checkIfAlreadyAppointment($conn, $teacher_id, $start_time, $end_time);
 		}
 	}
 };
 
-function outputButtons($conn, $row)//Y
+// Function to calcuate the string needed to complete the button
+function outputButtons($conn, $row)
 {
 	// Select the interval to loop between
 	$interval = DateInterval::createFromDateString('5 min');
@@ -210,15 +226,18 @@ function outputButtons($conn, $row)//Y
 		// Add the interval on and assign it to a variable
 		$interval_time = $time->add($interval)->format('H:i');
 
+		// Get the return value from the function
 		$close_button = checkIfTimeTaken($conn, $current_time, $row['id'], $interval_time);
 
+		// Store the buttons in an array
 		$buttons[] = "<button class='btn btn-{$close_button}{$current_time} {$interval_time}</button>";
 	}
-
+	// Output the array
 	return $buttons;
 };
 
-function showTab($conn, $row)//Y
+// Function to collate all the data needed to output the teacher tab
+function showTab($conn, $row)
 {
 	// Start a div to store the class details
 	$record ="<div class='tab-pane fade' id='teacher-{$row['id']}'>";
@@ -226,21 +245,26 @@ function showTab($conn, $row)//Y
 		// Display the surname as the header
 		$record .= "<h1>{$row['surname']}</h1>";
 
+		// Run the function and add the return value(s) to the variable
 		$record .= checkToDisplayCancelButton($conn, $row['id']);
 
+		// Get the array from the function and store it in a variable
 		$buttons = outputButtons($conn, $row);
 
+		// Get the length of the array
 		$arrlength = count($buttons);
 
+		// Loop through each value in the array
 		for($x=0; $x<$arrlength; $x++)
 		{
+			// Add the particular button to the record
 		 	$record .= $buttons[$x];
 		}
 
 	// Close the div
 	$record .= "</div>";
 
+	// Output the variable
 	echo $record;
-
 }
 ?>
