@@ -66,7 +66,7 @@ $choose_timeslot_ajax_URL = WEBURL.DOCROOT."scripts/parents-evening/students/tim
 				<a class='nav-link active' id='pills-home-tab' data-toggle='pill' href='#my-timetable'>My Timetable</a>
 			</li>
 
-			<?php showClasses($conn, 1) // Run the showClasses to display all classes ?>
+			<?php checkClassesUserIn($conn, 1) // Run the showClasses to display all classes ?>
 
 		</ul>
 
@@ -76,43 +76,13 @@ $choose_timeslot_ajax_URL = WEBURL.DOCROOT."scripts/parents-evening/students/tim
 
 				<ul class="list-group">
 
-				<?php
+				<?php displayTimetable($conn); // Run function to display the timetable ?>
 
-					function displayTimetable($conn)
-					{
-						// SQL statement to show appointments that a user has taken
-						$sql_select_times = "SELECT appointments.*, users.surname
-						FROM appointments
-						INNER JOIN users
-						ON appointments.teacher_id = users.id
-						WHERE appointments.student_id = {$_SESSION['userid']} AND appointments.parents_evening_id = $parents_evening_id
-						ORDER BY appointment_start ASC";
-
-						// Store the result set from the query inside a variable
-						$result = mysqli_query($conn, $sql_select_times);
-
-						// Loop through each of the records returned
-						while($row = mysqli_fetch_assoc($result))
-						{
-							// Set the start time to the format of Hour:Minute
-							$start = date("H:i",strtotime($row['appointment_start']));
-
-							// Set the end time to the format of Hour:Minute
-							$end = date("H:i",strtotime($row['appointment_end']));
-
-							// Display this as a Bootstrap list group item with the variables displayed
-							$record = "<li class='list-group-item'>{$start} - {$end} : with {$row['surname']}</li>";
-
-							// Output the record
-							echo $record;
-						}
-					}
-				?>
 				</ul>
 
 			</div>
 
-			<?php showClasses($conn, 2) // Run the function to display the divs ?>
+			<?php checkClassesUserIn($conn, 2); // Run the function to display the divs ?>
 
 		</div>
 
