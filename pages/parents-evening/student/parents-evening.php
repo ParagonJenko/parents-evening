@@ -11,6 +11,18 @@ if(isset($_GET['id']))
 {
 	// Set the GET value to a local variable
 	$parents_evening_id = $_GET['id'];
+	$sql_check_parents_evening = "SELECT * FROM parents_evenings WHERE school_id = {$_SESSION['school_id']} AND available = 'y' AND evening_date >= CURDATE() ORDER BY evening_date ASC LIMIT 1";
+
+	$result = mysqli_query($conn, $sql_check_parents_evening);
+
+	$row = mysqli_fetch_assoc($result);
+
+	if($row['id'] != $parents_evening_id)
+	{
+		// Redirect the user back to the index page
+		header("Location: ".WEBURL.DOCROOT."pages/parents-evening/student");
+		exit();
+	}
 }
 else
 {
