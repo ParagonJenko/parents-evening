@@ -68,8 +68,8 @@ else
 {
 	// Query unsuccessful
 	// Insert record of this action into serverlog
-	$action = "$table has been failed to be updated at ID: $id";
-	$sql_serverlog = "INSERT INTO server_log (ip_address, user, action, location) VALUES ('$ipaddress', '$user', '$action', '$location')";
+	$action = "$table has been failed to be updated at ID: $id ". mysqli_error($conn);
+	$sql_serverlog = "INSERT INTO server_log (ip_address, user, action, location) VALUES ('$ipaddress', '$user', '$action', '$location') ";
 	mysqli_query($conn, $sql_serverlog);
 
 	// Closes the database connection

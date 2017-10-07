@@ -38,7 +38,7 @@ else
 {
 	// Fail
 	// Insert record of this action into serverlog
-	$action = "$table has been failed to be deleted at ID: {$_REQUEST['delete_id']}";
+	$action = "$table has been failed to be deleted at ID: {$_REQUEST['delete_id']} ". mysqli_error($conn);
 	$sql_serverlog = "INSERT INTO server_log (ip_address, user, action, location) VALUES ('$ipaddress', '$user', '$action', '$location')";
 	mysqli_query($conn, $sql_serverlog);
 
