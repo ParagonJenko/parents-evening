@@ -20,69 +20,80 @@ require($_SERVER['DOCUMENT_ROOT']."/parents-evening/server/config.php");
 	<!-- Require navbar from specified file -->
 	<?php require($_SERVER['DOCUMENT_ROOT'].DOCROOT."includes/navbar.php"); ?>
 
-	<div class="container-fluid">
-		<div class="container-fluid">
+	<div class="index-head">
 
-			<h1>Parents Evening System</h1>
-			<p>Welcome to a bespoke parent's evening system created for students by a student.</p>
-			<p>To access your school please login or signup here: <a class="btn btn-outline-success" data-toggle="modal" href="#login-modal">Login/Signup</a></p>
+		<h1 class="index-header">Parents Evening System</h1>
+
+		<p>Welcome to a bespoke parent's evening system created for students by a student.</p>
+		<p>To access your school please login or signup here: <a class="btn btn-outline-success" data-toggle="modal" href="#login-modal">Login/Signup</a></p>
+
+	</div>
+
+	<div class="container-fluid row index-block">
+
+		<div class="col-md-6">
+
+			<h2>Why should schools use this system?</h2>
+
+			<div class="index-list">
+				<p>Eliminates the need to waste valuable lesson time on parents evening.</p>
+				<p>Automates the process of scheduling of your parent's evenings.</p>
+				<p>Only stores the basic details about users.</p>
+				<p>Referral codes for students and teachers.</p>
+			</div>
 
 		</div>
 
-		<div class="container-fluid row">
+		<div class="col-md-6">
 
-			<div class="col-md-6">
+			<h2>Why should students use this system?</h2>
 
-				<h2>Why should schools use this system?</h2>
-
-				<p>Eliminates the need to waste valuable time on allocating times.</p>
-				<p>Automates the process of scheduling of your parent's evenings.</p>
-				<p>Only stores the bare basic details needed to performing its tasks.</p>
-
-			</div>
-
-			<div class="col-md-6">
-
-				<h2>Why should students use this system?</h2>
-
+			<div class="index-list">
 				<p>Tired of having less options because you have your teacher later than everyone else?</p>
 				<p>Want to be able to view all of your teachers schedule?</p>
-				<p>Would you like to never have to wait in a line?</p>
-
+				<p>Would you like to never have to wait in a queue to book your appointments?</p>
+				<p>Want the freedom of choosing any slot immediately?</p>
 			</div>
 
 		</div>
 
-		<div class="container-fluid">
+	</div>
 
-			<h3>Features</h3>
+	<div class="container-fluid index-block">
 
-			<div class="row">
+		<h3 class="index-list-head">Features</h3>
 
-				<div class="col-md-4">
+		<div class="row">
 
-					<h4>Student</h4>
+			<div class="col-md-4">
 
-					<p>Access their appointment times</p>
-					<p>Schedule and cancel appointments at will</p>
+				<h4 class="index-list-heading">Student</h4>
 
+				<div class="index-list">
+					<p>View all teachers for appointments.</p>
+					<p>Access their appointment times.</p>
+					<p>Schedule and cancel appointments at will.</p>
 				</div>
 
-				<div class="col-md-4">
+			</div>
 
-					<h4>Teachers</h4>
+			<div class="col-md-4">
 
-					<p>View all appointments schedule</p>
-					<p>Add and remove students from classes</p>
+				<h4 class="index-list-heading">Teachers</h4>
 
+				<div class="index-list">
+					<p>View all appointments schedule.</p>
+					<p>Add and remove students from classes.</p>
 				</div>
 
-				<div class="col-md-4">
+			</div>
 
-					<h4>Admin</h4>
+			<div class="col-md-4">
 
+				<h4 class="index-list-heading">Admin</h4>
+
+				<div class="index-list">
 					<p>Full access to manage users and school details</p>
-
 				</div>
 
 			</div>
