@@ -16,7 +16,7 @@ $location = "delete-script.php";
 $table = $_GET['table_name'];
 
 // SQL statement to delete from the table provided where the ID is equal to either the POST or GET value
-$sql = "DELETE FROM {$table} WHERE id = {$_REQUEST['delete_id']}";
+$sql = "DELETE FROM {$table} WHERE id = {$_REQUEST['delete_id']} LIMIT 1";
 
 // Check the query was successful
 if(mysqli_query($conn, $sql))
