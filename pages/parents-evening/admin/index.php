@@ -105,7 +105,7 @@ function removeTeacherStudentClass($conn)
 		<!-- Require navbar from specified file -->
 		<?php require($_SERVER['DOCUMENT_ROOT'].DOCROOT.'includes/navbar.php'); ?>
 
-		<?php include($_SERVER['DOCUMENT_ROOT'].DOCROOT."scripts/parents-evening/admin/show-user.php"); ?>
+		<?php //include($_SERVER['DOCUMENT_ROOT'].DOCROOT."scripts/parents-evening/admin/show-user.php"); ?>
 
 		<?php include($_SERVER['DOCUMENT_ROOT'].DOCROOT."scripts/parents-evening/admin/show-parents-evening.php"); ?>
 
@@ -257,7 +257,7 @@ function removeTeacherStudentClass($conn)
 									</tr>
 								</thead>
 								<tbody>
-									<?php showUsers($conn, "admin") ?>
+									<?php //showUsers($conn, "admin") ?>
 
 						</div>
 
@@ -297,7 +297,7 @@ function removeTeacherStudentClass($conn)
 									</tr>
 								</thead>
 								<tbody>
-								<?php showUsers($conn, "teacher") ?>
+								<?php //showUsers($conn, "teacher") ?>
 
 						</div>
 
@@ -336,7 +336,7 @@ function removeTeacherStudentClass($conn)
 									</tr>
 								</thead>
 								<tbody>
-								<?php showUsers($conn, "student") ?>
+								<?php //showUsers($conn, "student") ?>
 
 						</div>
 
