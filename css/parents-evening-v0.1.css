@@ -166,10 +166,10 @@ p
 /*ADMIN PAGE*/
 .table
 {
-	margin: 1.5vw;
 	text-align: center;
 }
 
-.table th {
+.table th
+{
    text-align: center;
 }
