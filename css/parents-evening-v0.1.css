@@ -173,3 +173,9 @@ p
 {
    text-align: center;
 }
+
+.admin-table-row div
+{
+	margin: 0;
+	padding: 0;
+}

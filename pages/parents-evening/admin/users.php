@@ -12,7 +12,7 @@ $this_page_URL = WEBURL.DOCROOT."pages/parents-evening/admin/users.php";
 <!doctype html>
 <html>
 	<!-- Require head from specified file -->
-	<?php $pagetitle = 'Admin'; require($_SERVER['DOCUMENT_ROOT'].DOCROOT.'includes/head.php'); ?>
+	<?php $pagetitle = 'Admin - Users'; require($_SERVER['DOCUMENT_ROOT'].DOCROOT.'includes/head.php'); ?>
 
 	<body class='text-center'>
 
@@ -28,62 +28,82 @@ $this_page_URL = WEBURL.DOCROOT."pages/parents-evening/admin/users.php";
 
 				<h1 class="col-4">Users</h1>
 
-				<a class="btn btn-success col-2" href="<?php echo "$this_page_URL?page=1"; ?>">Clear Search</a>
+				<div class="col-8 row admin-table-row">
 
-				<form class="col-2" method="get" action="<?php echo $this_page_URL; ?>">
+					<div class="col-3">
 
-					<input type="number" hidden value="<?php echo $_GET['page']; ?>" name="page">
-
-					<div class="input-group">
-
-						<select class="form-control" name="column">
-							<option value="id">ID</option>
-							<option value="username">Username</option>
-							<option value="forename">Forename</option>
-							<option value="surname">Surname</option>
-						</select>
-
-						<input type="text" class="form-control" placeholder="Search For" name="query">
-
-						<span class="input-group-btn">
-					    <button class="btn btn-success" type="submit"><i class="fa fa-search"></i></button>
-					  </span>
+						<a class="btn btn-success" href="<?php echo "$this_page_URL?page=1"; ?>">Clear Search</a>
 
 					</div>
 
-				</form>
+					<div class="col-3">
 
-				<form class="col-2" method="get" action="<?php echo $this_page_URL; ?>">
+						<form method="get" action="<?php echo $this_page_URL; ?>">
 
-					<input type="number" hidden value="<?php echo $_GET['page']; ?>" name="page">
+							<input type="number" hidden value="<?php echo $_GET['page']; ?>" name="page">
 
-					<div class="input-group">
+							<div class="input-group">
 
-						<select class="form-control" name="order">
-							<option value="id">ID</option>
-							<option value="username">Username</option>
-							<option value="forename">Forename</option>
-							<option value="surname">Surname</option>
-							<option value="status">Status</option>
-						</select>
+								<select class="form-control" name="column">
+									<option value="id">ID</option>
+									<option value="username">Username</option>
+									<option value="forename">Forename</option>
+									<option value="surname">Surname</option>
+								</select>
 
-						<span class="input-group-btn">
-					    <button class="btn btn-success" type="submit"><i class="fa fa-sort"></i></button>
-					  </span>
+								<input type="text" class="form-control" placeholder="Search For" name="query">
+
+								<span class="input-group-btn">
+							    <button class="btn btn-success" type="submit"><i class="fa fa-search"></i></button>
+							  </span>
+
+							</div>
+
+						</form>
 
 					</div>
 
-				</form>
+					<div class="col-3 w-50">
 
-				<div class="btn-group col-2">
+						<form method="get" action="<?php echo $this_page_URL; ?>">
 
-					<button type="button" class="btn btn-info btn-block">Admin</button>
-					<button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>
+							<input type="number" hidden value="<?php echo $_GET['page']; ?>" name="page">
 
-					<div class="dropdown-menu dropdown-admin w-100 text-center">
-						<a class="dropdown-item" data-toggle="modal" href="#add-user-form-modal"><i class="fa fa-user-plus"></i> Add User</a>
-						<a class="dropdown-item" data-toggle="modal" href="#delete-user-form-modal"><i class="fa fa-user-times"></i> Delete User</a>
-						<a class="dropdown-item" data-toggle="modal" href="#reset-password-form-modal"><i class="fa fa-key"></i> Reset Password</a>
+							<div class="input-group">
+
+								<select class="form-control" name="order">
+									<option value="id">Order By: ID</option>
+									<option value="username">Order By: Username</option>
+									<option value="forename">Order By: Forename</option>
+									<option value="surname">Order By: Surname</option>
+									<option value="status">Order By: Status</option>
+								</select>
+
+								<span class="input-group-btn">
+							    <button class="btn btn-success" type="submit"><i class="fa fa-sort"></i></button>
+							  </span>
+
+							</div>
+
+						</form>
+
+					</div>
+
+					<div class="col-3">
+
+						<div class="btn-group">
+
+							<button type="button" class="btn btn-info btn-block">Admin</button>
+							<button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>
+
+							<div class="dropdown-menu dropdown-admin w-100 text-center">
+								<a class="dropdown-item" data-toggle="modal" href="#add-user-form-modal"><i class="fa fa-user-plus"></i> Add User</a>
+								<a class="dropdown-item" data-toggle="modal" href="#delete-user-form-modal"><i class="fa fa-user-times"></i> Delete User</a>
+								<a class="dropdown-item" data-toggle="modal" href="#reset-password-form-modal"><i class="fa fa-key"></i> Reset Password</a>
+							</div>
+
+						</div>
+
 					</div>
 
 				</div>
