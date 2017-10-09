@@ -16,11 +16,19 @@ $location = "update-script.php";
 $table = $_GET['table_name'];
 
 // Get the ID from the variable and set it in a variable
-$id = $_GET['id'];
+$id = $_REQUEST['id'];
 
 // Switch loop for the different tables
 switch($table)
 {
+	// If the table name is users
+	case "users":
+		$values = "status = '{$_POST['status']}', forename = '{$_POST['forename']}', surname = '{$_POST['surname']}', username = '{$_POST['username']}', email_address = '{$_POST['email_address']}'";
+		if($_POST['resetPass'] == "y")
+		{
+			$values .= ", password = '{$password_hash}'";
+		}
+		break;
 	// If the table is parents_evenings
 	case "parents_evenings":
 		// Switch loop to check the availability

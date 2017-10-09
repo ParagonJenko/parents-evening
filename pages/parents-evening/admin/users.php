@@ -7,6 +7,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/parents-evening/server/config.php'); //Chang
 require($_SERVER['DOCUMENT_ROOT'].DOCROOT.'scripts/core-site/session/session_admin.php');
 
 $this_page_URL = WEBURL.DOCROOT."pages/parents-evening/admin/users.php";
+$show_user_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/show-user.php"
 ?>
 
 <!doctype html>
@@ -14,13 +15,33 @@ $this_page_URL = WEBURL.DOCROOT."pages/parents-evening/admin/users.php";
 	<!-- Require head from specified file -->
 	<?php $pagetitle = 'Admin - Users'; require($_SERVER['DOCUMENT_ROOT'].DOCROOT.'includes/head.php'); ?>
 
+	<script>
+		// Dynamic Modals to show Individual User Record
+		function showIndividualUser(id) {
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("individual_user").innerHTML = this.responseText;
+            }
+        };
+        xmlhttp.open("GET","<?php echo $show_user_URL; ?>?q="+id,true);
+        xmlhttp.send();
+		}
+	</script>
+
 	<body class='text-center'>
 
 		<!-- Require navbar from specified file -->
 		<?php require($_SERVER['DOCUMENT_ROOT'].DOCROOT.'includes/navbar.php'); ?>
 
 		<!-- Include users from specified file -->
-		<?php include($_SERVER['DOCUMENT_ROOT'].DOCROOT."scripts/parents-evening/admin/show-user.php"); ?>
+		<?php include($_SERVER['DOCUMENT_ROOT'].DOCROOT."scripts/parents-evening/admin/show-users.php"); ?>
 
 		<div class="container-fluid">
 
@@ -121,6 +142,7 @@ $this_page_URL = WEBURL.DOCROOT."pages/parents-evening/admin/users.php";
 						<th>Forename</th>
 						<th>Surname</th>
 						<th>Classes</th>
+						<th>Edit</th>
 						<th>Delete</th>
 					</tr>
 
