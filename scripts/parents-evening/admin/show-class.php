@@ -18,6 +18,28 @@ function getTeachers($conn)
 	return $record;
 }
 
+function getStudentsinClass($conn)
+{
+	$delete_user_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/delete-script.php";
+
+	$sql = "SELECT class.*, users.forename, users.surname
+	FROM class
+	INNER JOIN users
+	ON class.student_id = users.id
+	WHERE class.class_id = {$_GET['q']}";
+
+	$result = mysqli_query($conn, $sql);
+
+	while($row = mysqli_fetch_assoc($result))
+	{
+		$record .= "<tr>";
+		$record .= "<td>{$row['forename']} {$row['surname']}</td>";
+		$record .= "<td><a href='{$delete_user_script_URL}?table_name=class&delete_id={$row['id']}' class='btn btn-warning fa fa-minus-circle'></a></td>";
+		$record .= "</tr>";
+	}
+	return $record;
+}
+
 // Set the script URL
 $update_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/update-script.php?table_name=classes";
 
@@ -56,6 +78,19 @@ $record = "<form action='{$update_script_URL}' method='post'>";
 			$record .= getTeachers($conn);
 		$record .= "</select>";
 	$record .= "</div>";
+
+	$record .= "<h4>Students in the Class</h4>";
+	$record .= "<table class='table table-hover'>";
+		$record .= "<thead>";
+			$record .= "<tr>";
+				$record .= "<th>Name</th>";
+				$record .= "<th>Remove</th>";
+			$record .= "</tr>";
+		$record .= "</thead>";
+		$record .= "<tbody>";
+			$record .= getStudentsinClass($conn);
+		$record .= "</tbody>";
+	$record .= "</table>";
 
 	$record .= "<button type='submit' class='btn btn-warning btn-block'>Update User</button>";
 
