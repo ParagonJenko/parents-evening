@@ -1,0 +1,3 @@
+[30-Sep-2017 22:35:05 Europe/London] PHP Parse error:  syntax error, unexpected '}' in /home/ebfccbbe/public_html/parents-evening/pages/parents-evening/teacher/index.php on line 57
+[03-Oct-2017 19:14:30 Europe/London] PHP Parse error:  syntax error, unexpected '$sql_select_users' (T_VARIABLE) in /home/ebfccbbe/public_html/parents-evening/pages/parents-evening/teacher/index.php on line 51
+[03-Oct-2017 19:15:54 Europe/London] PHP Parse error:  syntax error, unexpected '$sql_select_users' (T_VARIABLE) in /home/ebfccbbe/public_html/parents-evening/pages/parents-evening/teacher/index.php on line 51
