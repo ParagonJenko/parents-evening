@@ -166,10 +166,16 @@ p
 /*ADMIN PAGE*/
 .table
 {
-	margin: 1.5vw;
 	text-align: center;
 }
 
-.table th {
+.table th
+{
    text-align: center;
+}
+
+.admin-table-row div
+{
+	margin: 0;
+	padding: 0;
 }
