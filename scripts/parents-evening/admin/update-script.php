@@ -28,6 +28,7 @@ switch($table)
 		{
 			$values .= ", password = '{$password_hash}'";
 		}
+		$header_URL .= "users.php?page=1";
 		break;
 	// If the table is parents_evenings
 	case "parents_evenings":
@@ -50,6 +51,10 @@ switch($table)
 	case "school_data":
 		// Set the columns equal to the variable provided by the form using the POST method
 		$values = "school_name = '{$_POST['school_name']}', school_address = '{$_POST['school_address']}', school_email_address = '{$_POST['school_email_address']}'";
+		break;
+	case "classes":
+		$values = "class_name = '{$_POST['class_name']}', teacher_id = {$_POST['teacher_id']}, additional_teacher_id = {$_POST['additional_teacher_id']}";
+		$header_URL .= "classes.php?page=1";
 		break;
 }
 

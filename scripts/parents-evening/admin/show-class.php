@@ -50,8 +50,9 @@ $record = "<form action='{$update_script_URL}' method='post'>";
 
 	$record .= "<div class='form-group'>";
 		$record .= "<label for='username'>Username</label>";
-		$record .= "<select class='form-control' name='teacher_id'>";
-			$record .= "<option value='{$row['teacher_id']}'>No Change</option>";
+		$record .= "<select class='form-control' name='additional_teacher_id'>";
+			$record .= "<option value='{$row['additional_teacher_id']}'>No Change</option>";
+			$record .= "<option value='NULL'>No Additional Teacher</option>";
 			$record .= getTeachers($conn);
 		$record .= "</select>";
 	$record .= "</div>";

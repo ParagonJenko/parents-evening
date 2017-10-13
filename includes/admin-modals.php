@@ -7,6 +7,8 @@ $delete_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/delete-script
 
 $admin_reset_password_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/reset-password.php";
 $add_student_to_class_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/add-script.php?table_name=class";
+
+$add_class_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/add-script.php?table_name=classes";
 ?>
 
 <!-- Add Parents Evening Modal -->
@@ -181,6 +183,16 @@ $add_student_to_class_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin
 
 </div>
 
+
+<?php function selectTeachers($conn)
+{
+	$sql = "SELECT * FROM users WHERE status = 'teacher' AND school_id = {$_SESSION['school_id']}";
+	$result = mysqli_query($conn, $sql);
+	while($row = mysqli_fetch_assoc($result))
+	{
+		echo "<option value='{$row['id']}'>{$row['forename']} {$row['surname']}</option>";
+	}
+}; ?>
 <!-- Form Modal -->
 <div class="modal fade text-center" id="class-form-modal">
 
@@ -196,6 +208,74 @@ $add_student_to_class_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin
 			</div>
 
 			<div class="modal-body" id="individual_class">
+
+			</div>
+
+			<div class="modal-footer">
+
+				<button type="submit" class="btn btn-danger mr-auto" data-dismiss="modal"><i class="fa fa-remove"></i> Cancel</button>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<!-- Form Modal -->
+<div class="modal fade text-center" id="add-class-form-modal">
+
+	<div class="modal-dialog">
+
+		<div class="modal-content">
+
+			<div class="modal-header">
+
+				<h4 class="modal-title"> Add Class Form</h4>
+				<i class="fa fa-remove" data-dismiss="modal"></i>
+
+			</div>
+
+			<div class="modal-body">
+				<form method="post" action="<?php echo $add_class_script_URL; ?>">
+
+					<div class="form-group row">
+
+						<label class="col-4" for="class_name">Class Name</label>
+						<input class="form-control col-8" type="text" name="class_name" required>
+
+					</div>
+
+					<div class="form-group row">
+
+						<label class="col-4" for="class_teacher">Class Teacher</label>
+						<select class="form-control col-8" name="class_teacher" required>
+
+							<?php	selectTeachers($conn); ?>
+
+						</select>
+
+					</div>
+
+					<div class="form-group row">
+
+						<label class="col-4" for="class_additional_teacher">Class Additional Teacher</label>
+						<select class="form-control col-8" name="class_additional_teacher">
+							<option value="NULL">No Additional Teacher</option>
+							<?php	selectTeachers($conn) ?>
+
+						</select>
+
+					</div>
+
+					<div class="form-group">
+
+						<button type="submit" class="btn btn-warning btn-block">Add Class</button>
+
+					</div>
+
+				</form>
 
 			</div>
 

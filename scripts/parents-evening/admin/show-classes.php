@@ -84,7 +84,7 @@ function sqlQuery($conn, $results_per_page)
 			ON classes.teacher_id = teacher.id
 			LEFT JOIN users AS add_teacher
 			ON classes.additional_teacher_id = add_teacher.id
-			WHERE classes.school_id = {$_SESSION['school_id']} AND {$_GET['column']} LIKE '%{$_GET['query']}%'
+			WHERE classes.school_id = {$_SESSION['school_id']} AND classes.{$_GET['column']} LIKE '%{$_GET['query']}%'
 			LIMIT $results_per_page
 			OFFSET $this_page_first_result";
 		}
@@ -97,7 +97,7 @@ function sqlQuery($conn, $results_per_page)
 			LEFT JOIN users AS add_teacher
 			ON classes.additional_teacher_id = add_teacher.id
 			WHERE classes.school_id = {$_SESSION['school_id']}
-			ORDER BY {$_GET['order']}
+			ORDER BY classes.{$_GET['order']}
 			LIMIT $results_per_page
 			OFFSET $this_page_first_result";
 		}

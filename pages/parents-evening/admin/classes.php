@@ -92,7 +92,7 @@ $show_user_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/show-class.php"
 							<button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>
 
 							<div class="dropdown-menu dropdown-admin w-100 text-center">
-								<a class="dropdown-item" data-toggle="modal" href="#"><i class="fa fa-user-plus"></i> Add Class</a>
+								<a class="dropdown-item" data-toggle="modal" href="#add-class-form-modal"><i class="fa fa-user-plus"></i> Add Class</a>
 							</div>
 
 						</div>
