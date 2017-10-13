@@ -28,7 +28,7 @@ require($_SERVER['DOCUMENT_ROOT'].DOCROOT.'scripts/core-site/session/session_adm
 		<?php include($_SERVER['DOCUMENT_ROOT'].DOCROOT."scripts/parents-evening/admin/show-school.php"); ?>
 
 		<div class="container-fluid">
-			
+
 			<div class="row">
 
 				<ul class="nav flex-column nav-pills col-2" id="v-pills-tab">
@@ -87,15 +87,9 @@ require($_SERVER['DOCUMENT_ROOT'].DOCROOT.'scripts/core-site/session/session_adm
 
 								<h2 class="col-10">Parent's Evening</h2>
 
-								<div class="btn-group col-2">
+								<div class="col-2">
 
-									<button type="button" class="btn btn-info btn-block">Admin</button>
-									<button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>
-
-									<div class="dropdown-menu dropdown-admin w-100 text-center">
-										<a class="dropdown-item" data-toggle="modal" href="#add-parents-evening-modal"><i class="fa fa-plus-circle"></i> Add Parent's Evening</a>
-										<a class="dropdown-item" data-toggle="modal" href="#delete-parents-evening-modal"><i class="fa fa-times-circle"></i> Delete Parent's Evening</a>
-									</div>
+									<a class="btn btn-info" data-toggle="modal" href="#add-parents-evening-modal"><i class="fa fa-plus-circle"></i> Add Parent's Evening</a>
 
 								</div>
 
@@ -109,6 +103,7 @@ require($_SERVER['DOCUMENT_ROOT'].DOCROOT.'scripts/core-site/session/session_adm
 										<th>Start Time</th>
 										<th>End Time</th>
 										<th>Available</th>
+										<th>Delete</th>
 									</tr>
 								</thead>
 								<tbody>

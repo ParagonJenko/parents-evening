@@ -3,7 +3,7 @@
 $home_page_URL = WEBURL.DOCROOT."homepage.php";
 
 // User Page URL
-$user_page_URL = WEBURL.DOCROOT."pages/core-site/account/user";
+$user_page_URL = WEBURL.DOCROOT."pages/core-site/account";
 
 // Logout Script URL
 $logout_script_URL = WEBURL.DOCROOT."scripts/core-site/account/logout.php";

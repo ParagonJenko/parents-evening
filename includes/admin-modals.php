@@ -291,6 +291,71 @@ $add_class_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/add-script
 
 </div>
 
+<div class="modal fade text-center" id="add-to-class-form-modal">
+
+	<div class="modal-dialog">
+
+		<div class="modal-content">
+
+			<div class="modal-header">
+
+				<h4 class="modal-title"> Add Student to Class Form</h4>
+				<i class="fa fa-remove" data-dismiss="modal"></i>
+
+			</div>
+
+			<div class="modal-body">
+
+				<form role="form" id="add-to-class-form" method="post" action="<?php echo $add_student_to_class_script_URL; ?>">
+
+					<div class="form-group">
+						<label for="select_class">My Class</label>
+						<select required type="text" class="form-control" name="select_class">
+							<?php
+							$sql = "SELECT * FROM classes WHERE teacher_id = {$_SESSION['userid']}";
+							$result = mysqli_query($conn, $sql);
+							while($row = mysqli_fetch_assoc($result))
+							{
+								echo "<option value='{$row['id']}'>{$row['class_name']}</option>";
+							}
+							?>
+						</select>
+					</div>
+
+					<div class="form-group">
+						<label for="select_student">Student</label>
+						<select required type="text" class="form-control" name="select_student">
+							<?php
+							$sql = "SELECT * FROM users WHERE status = 'student'";
+							$result = mysqli_query($conn, $sql);
+							while($row = mysqli_fetch_assoc($result))
+							{
+								echo "<option value='{$row['id']}'>{$row['forename']} {$row['surname']}</option>";
+							}
+							?>
+						</select>
+					</div>
+
+					<div class="form-group">
+						<button type='submit' class='btn btn-success btn-block'>Add Student to Class</button>
+					</div>
+
+				</form>
+
+			</div>
+
+			<div class="modal-footer">
+
+				<button type="submit" class="btn btn-danger mr-auto" data-dismiss="modal"><i class="fa fa-remove"></i> Cancel</button>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
 <!-- Form Modal -->
 <!--<div class="modal fade text-center" id="form-modal">
 

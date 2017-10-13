@@ -77,11 +77,7 @@ $record = "<form action='{$update_script_URL}' method='post'>";
 		$record .= "<div class='form-group'>";
 			$record .= "<label for='add_user_class'>Add User to Class</label>";
 			$record .= "<select class='form-control' name='class_id'>";
-				$sql = "SELECT DISTINCT classes.class_name, classes.id
-				FROM classes
-				RIGHT JOIN class
-				ON classes.id = class.class_id
-				WHERE classes.school_id = {$_SESSION['school_id']} AND class.student_id != {$row['id']}";
+				$sql = "SELECT * FROM classes WHERE school_id = {$_SESSION['school_id']}";
 				$result = mysqli_query($conn, $sql);
 				while($row = mysqli_fetch_assoc($result))
 				{
