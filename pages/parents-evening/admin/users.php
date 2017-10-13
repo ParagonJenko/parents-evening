@@ -47,17 +47,19 @@ $show_user_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/show-user.php"
 
 			<div class="row">
 
+				<a class="col-2 fa fa-arrow-circle-left" href="index.php"></a>
+
 				<h1 class="col-4">Users</h1>
 
-				<div class="col-8 row admin-table-row">
+				<div class="col-6 row admin-table-row">
 
-					<div class="col-3">
+					<div class="col-4">
 
 						<a class="btn btn-success" href="<?php echo "$this_page_URL?page=1"; ?>">Clear Search</a>
 
 					</div>
 
-					<div class="col-3">
+					<div class="col-4">
 
 						<form method="get" action="<?php echo $this_page_URL; ?>">
 
@@ -84,33 +86,7 @@ $show_user_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/show-user.php"
 
 					</div>
 
-					<div class="col-3 w-50">
-
-						<form method="get" action="<?php echo $this_page_URL; ?>">
-
-							<input type="number" hidden value="<?php echo $_GET['page']; ?>" name="page">
-
-							<div class="input-group">
-
-								<select class="form-control" name="order">
-									<option value="id">Order By: ID</option>
-									<option value="username">Order By: Username</option>
-									<option value="forename">Order By: Forename</option>
-									<option value="surname">Order By: Surname</option>
-									<option value="status">Order By: Status</option>
-								</select>
-
-								<span class="input-group-btn">
-							    <button class="btn btn-success" type="submit"><i class="fa fa-sort"></i></button>
-							  </span>
-
-							</div>
-
-						</form>
-
-					</div>
-
-					<div class="col-3">
+					<div class="col-4">
 
 						<div class="btn-group">
 
@@ -119,7 +95,6 @@ $show_user_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/show-user.php"
 
 							<div class="dropdown-menu dropdown-admin w-100 text-center">
 								<a class="dropdown-item" data-toggle="modal" href="#add-user-form-modal"><i class="fa fa-user-plus"></i> Add User</a>
-								<a class="dropdown-item" data-toggle="modal" href="#delete-user-form-modal"><i class="fa fa-user-times"></i> Delete User</a>
 								<a class="dropdown-item" data-toggle="modal" href="#reset-password-form-modal"><i class="fa fa-key"></i> Reset Password</a>
 							</div>
 
@@ -136,11 +111,11 @@ $show_user_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/show-user.php"
 				<thead>
 
 					<tr>
-						<th>#</th>
-						<th>Status</th>
-						<th>Username</th>
-						<th>Forename</th>
-						<th>Surname</th>
+						<th># <a class="fa fa-sort" href="<?php echo $this_page_URL; ?>?page=1&order=id"></a></th>
+						<th>Status <a class="fa fa-sort" href="<?php echo $this_page_URL; ?>?page=1&order=status"></a></th>
+						<th>Username <a class="fa fa-sort" href="<?php echo $this_page_URL; ?>?page=1&order=username"></a></th>
+						<th>Forename <a class="fa fa-sort" href="<?php echo $this_page_URL; ?>?page=1&order=forename"></a></th>
+						<th>Surname <a class="fa fa-sort" href="<?php echo $this_page_URL; ?>?page=1&order=surname"></a></th>
 						<th>Classes</th>
 						<th>Edit</th>
 						<th>Delete</th>
