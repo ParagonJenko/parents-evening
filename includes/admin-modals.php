@@ -182,6 +182,36 @@ $add_student_to_class_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin
 </div>
 
 <!-- Form Modal -->
+<div class="modal fade text-center" id="class-form-modal">
+
+	<div class="modal-dialog">
+
+		<div class="modal-content">
+
+			<div class="modal-header">
+
+				<h4 class="modal-title"> Class Form</h4>
+				<i class="fa fa-remove" data-dismiss="modal"></i>
+
+			</div>
+
+			<div class="modal-body" id="individual_class">
+
+			</div>
+
+			<div class="modal-footer">
+
+				<button type="submit" class="btn btn-danger mr-auto" data-dismiss="modal"><i class="fa fa-remove"></i> Cancel</button>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<!-- Form Modal -->
 <!--<div class="modal fade text-center" id="form-modal">
 
 	<div class="modal-dialog">

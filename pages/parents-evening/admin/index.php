@@ -132,20 +132,8 @@ function removeTeacherStudentClass($conn)
 						<a class="nav-link"  href="users.php?page=1"><i class="fa fa-user-circle-o"></i> Users</a>
 					</li>
 
-					<li class="nav-item dropdown">
-
-						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-address-book-o"></i> Classes</a>
-
-						<div class="dropdown-menu text-center w-100">
-
-							<a class="dropdown-item" id="v-pills-class-tab" data-toggle="pill" href="#v-pills-class">View Classes</a>
-
-							<a class="dropdown-item" id="v-pills-add-class-tab" data-toggle="pill" href="#v-pills-add-class">Add Class</a>
-
-							<a class="dropdown-item" id="v-pills-remove-class-tab" data-toggle="pill" href="#v-pills-remove-class">Remove Class</a>
-
-						</div>
-
+					<li class="nav-item">
+						<a class="nav-link" href="classes.php?page=1"><i class="fa fa-address-book-o"></i> Classes</a>
 					</li>
 
 				</ul>
