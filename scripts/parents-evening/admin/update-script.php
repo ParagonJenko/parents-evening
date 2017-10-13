@@ -28,6 +28,8 @@ switch($table)
 		{
 			$values .= ", password = '{$password_hash}'";
 		}
+		// Add an insert script for adding people to classes
+		$additional_sql = "; INSERT INTO class (class_id, student_id) VALUES ({$_POST['class_id']}, {$_REQUEST['id']})";
 		$header_URL .= "users.php?page=1";
 		break;
 	// If the table is parents_evenings
@@ -59,10 +61,10 @@ switch($table)
 }
 
 // SQL statement to update the table with the values at the ID provided
-$sql = "UPDATE $table SET $values WHERE id = $id";
+$sql = "UPDATE $table SET $values WHERE id = $id".$additional_sql;
 
 // Check if the query is successful
-if(mysqli_query($conn, $sql))
+if(mysqli_multi_query($conn, $sql))
 {
 	// Query successful
 	// Insert record of this action into serverlog
