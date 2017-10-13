@@ -87,14 +87,9 @@ require($_SERVER['DOCUMENT_ROOT'].DOCROOT.'scripts/core-site/session/session_adm
 
 								<h2 class="col-10">Parent's Evening</h2>
 
-								<div class="btn-group col-2">
+								<div class="col-2">
 
-									<button type="button" class="btn btn-info btn-block">Admin</button>
-									<button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>
-
-									<div class="dropdown-menu dropdown-admin w-100 text-center">
-										<a class="dropdown-item" data-toggle="modal" href="#add-parents-evening-modal"><i class="fa fa-plus-circle"></i> Add Parent's Evening</a>
-									</div>
+									<a class="btn btn-info" data-toggle="modal" href="#add-parents-evening-modal"><i class="fa fa-plus-circle"></i> Add Parent's Evening</a>
 
 								</div>
 

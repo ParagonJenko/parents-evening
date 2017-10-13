@@ -47,7 +47,7 @@ $show_user_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/show-user.php"
 
 			<div class="row">
 
-				<a class="col-2 fa fa-arrow-circle-left" href="index.php"></a>
+				<a class="col-2 fa fa-arrow-circle-left back-arrow" href="index.php"></a>
 
 				<h1 class="col-4">Users</h1>
 
@@ -88,17 +88,7 @@ $show_user_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/show-user.php"
 
 					<div class="col-4">
 
-						<div class="btn-group">
-
-							<button type="button" class="btn btn-info btn-block">Admin</button>
-							<button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>
-
-							<div class="dropdown-menu dropdown-admin w-100 text-center">
-								<a class="dropdown-item" data-toggle="modal" href="#add-user-form-modal"><i class="fa fa-user-plus"></i> Add User</a>
-								<a class="dropdown-item" data-toggle="modal" href="#reset-password-form-modal"><i class="fa fa-key"></i> Reset Password</a>
-							</div>
-
-						</div>
+							<a class="btn btn-info" data-toggle="modal" href="#add-user-form-modal"><i class="fa fa-user-plus"></i> Add User</a>
 
 					</div>
 

@@ -40,7 +40,7 @@ function showPills($conn, $row)//Y
 {
 	// Create a pill for the class
 	$record = "<li class='nav-item'>";
-		$record .= "<a class='nav-link' id='pills-home-tab' data-toggle='pill' href='#teacher-{$row['id']}'>{$row['surname']}</a>";
+		$record .= "<a class='nav-link' id='pills-teacher-{$row['id']}' data-toggle='pill' href='#teacher-{$row['id']}'>{$row['surname']}</a>";
 	$record .= "</li>";
 
 	// Output the record
@@ -51,7 +51,7 @@ function showPills($conn, $row)//Y
 function checkClassesUserIn($conn, $pill_tab)
 {
 	// SQL to check the classes that a user is in
-	$sql_check_classes = "SELECT users.surname, users.id
+	$sql_check_classes = "SELECT DISTINCT users.surname, users.id
 	FROM class
 	INNER JOIN classes
 	ON class.class_id = classes.id

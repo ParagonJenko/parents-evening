@@ -72,7 +72,7 @@ $choose_timeslot_ajax_URL = WEBURL.DOCROOT."scripts/parents-evening/students/tim
 		<h1>My Classes</h1>
 
 
-		<ul class="nav nav-pills nav-justified flex-wrap" id="pills-tab-student">
+		<ul class="nav nav-pills nav-justified" id="pills-tab-student">
 
 			<li class='nav-item'>
 				<a class='nav-link active' id='pills-home-tab' data-toggle='pill' href='#my-timetable'>My Timetable</a>

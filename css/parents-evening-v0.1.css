@@ -35,7 +35,7 @@
 .dropdown-menu, .navbar-dropdown > .dropdown-item
 {
 	color:#17252A;
-    background-color: transparent;
+  background-color: #fff;
 	border: transparent;
 }
 
@@ -178,4 +178,10 @@ p
 {
 	margin: 0;
 	padding: 0;
+}
+
+.back-arrow, .back-arrow:hover
+{
+	font-size: 2.5em !important;
+	text-decoration: none;
 }
