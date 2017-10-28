@@ -88,7 +88,7 @@ if($_SERVER['REQUEST_METHOD'] = "POST")
 	else
 	{
 		// Insert record of this action into serverlog
-		$action = "User not logged in, incorrect email.";
+		$action = "User not logged in, incorrect username.";
 		$sql_serverlog = "INSERT INTO server_log (ip_address, user, action, location) VALUES ('$ipaddress', '$username', '$action', '$location')";
 		mysqli_query($conn, $sql_serverlog);
 

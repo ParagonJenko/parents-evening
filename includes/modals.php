@@ -25,13 +25,6 @@ $user_signup_script_URL = WEBURL.DOCROOT."scripts/parents-evening/signup/user-si
 			<div class="modal-body">
 
 				<form role="form" id="loginform" method="post" action="<?php echo $login_script_URL; ?>">
-					<!-- Login using email -->
-					<!--<div class="form-group">
-				 		<div class="input-group">
-							<span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
-							<input required type="email" class="form-control" name="emailaddress" placeholder="Enter Email">
-						</div>
-					</div>-->
 					<!-- Login using username -->
 					<div class="form-group">
 				 		<div class="input-group">

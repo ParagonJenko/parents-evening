@@ -38,7 +38,7 @@ if($_SERVER['REQUEST_METHOD'] = "POST")
     // If no records found
 		// Insert record of this action into serverlog
 		$action = "User already in database";
-		$sql_serverlog = "INSERT INTO server_log (ip_address, user, action, location) VALUES ('$ipaddress', '$password', '$action', '$location')";
+		$sql_serverlog = "INSERT INTO server_log (ip_address, user, action, location) VALUES ('$ipaddress', '$username', '$action', '$location')";
 		mysqli_query($conn, $sql_serverlog);
 
 		// Closes the database connection
@@ -90,7 +90,7 @@ if($_SERVER['REQUEST_METHOD'] = "POST")
         // User added to the database
         // Insert record of this action into serverlog
 				$action = "User added to database";
-				$sql_serverlog = "INSERT INTO server_log (ip_address, user, action, location) VALUES ('$ipaddress', '$password', '$action', '$location')";
+				$sql_serverlog = "INSERT INTO server_log (ip_address, user, action, location) VALUES ('$ipaddress', '$username', '$action', '$location')";
 				mysqli_query($conn, $sql_serverlog);
 
 				// Closes the database connection
@@ -105,7 +105,7 @@ if($_SERVER['REQUEST_METHOD'] = "POST")
 				// User failed to be inserted
 				// Insert record of this action into serverlog
 				$action = "User failed to add to database";
-				$sql_serverlog = "INSERT INTO server_log (ip_address, user, action, location) VALUES ('$ipaddress', '$password', '$action', '$location')";
+				$sql_serverlog = "INSERT INTO server_log (ip_address, user, action, location) VALUES ('$ipaddress', '$username', '$action', '$location')";
 				mysqli_query($conn, $sql_serverlog);
 
 				// Closes the database connection
@@ -121,7 +121,7 @@ if($_SERVER['REQUEST_METHOD'] = "POST")
       // Query hasn't got records
 			// Insert record of this action into serverlog
 			$action = "Referral or teacher code incorrect";
-			$sql_serverlog = "INSERT INTO server_log (ip_address, user, action, location) VALUES ('$ipaddress', '$password', '$action', '$location')";
+			$sql_serverlog = "INSERT INTO server_log (ip_address, user, action, location) VALUES ('$ipaddress', '$username', '$action', '$location')";
 			mysqli_query($conn, $sql_serverlog);
 
 			// Closes the database connection
@@ -138,7 +138,7 @@ else
   // Request Method is not POST
 	// Insert record of this action into serverlog
 	$action = "Server Request Method not POST";
-	$sql_serverlog = "INSERT INTO server_log (ip_address, user, action, location) VALUES ('$ipaddress', '$user', '$action', '$location')";
+	$sql_serverlog = "INSERT INTO server_log (ip_address, user, action, location) VALUES ('$ipaddress', '$username', '$action', '$location')";
 	mysqli_query($conn, $sql_serverlog);
 
 	// Closes the database connection
