@@ -10,6 +10,7 @@ function showParents($conn)
 	// Two variables to store the URLs of the pagination URL and the availability toggle
 	$pagination_URL = WEBURL.DOCROOT."pages/parents-evening/admin/";
 	$available_toggle = WEBURL.DOCROOT."scripts/parents-evening/admin/update-script.php";
+	$delete_script_URL = WEBURL.DOCROOT."scripts/parents-evening/admin/delete-script.php?table_name=parents_evenings&";
 
 	// SQL statement to select all the parents evening where the school_id is equal to the one the user logged in with
 	$sql = "SELECT * FROM parents_evenings WHERE school_id = {$_SESSION['school_id']}";
@@ -78,7 +79,8 @@ function showParents($conn)
 			$record .= "<td>{$row['end_time']}</td>";
 			// This utilises the variable from the switch statement to change the colour and the text.
 			// It also sends GET variables using the URL provided above
-			$record .= "<td><a class='col-3 btn btn-{$available}' href='{$available_toggle}?id={$row['id']}&current_availability={$row['available']}&table_name=parents_evening'>{$output}</a></td>";
+			$record .= "<td><a class='btn btn-{$available}' href='{$available_toggle}?id={$row['id']}&current_availability={$row['available']}&table_name=parents_evenings'>{$output}</a></td>";
+			$record .= "<td><a class='btn btn-warning fa fa-minus-circle' href='{$delete_script_URL}&delete_id={$row['id']}'></a></td>";
 		$record .= "</tr>";
 
 		// Output the record

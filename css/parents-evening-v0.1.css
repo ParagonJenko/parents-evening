@@ -35,7 +35,7 @@
 .dropdown-menu, .navbar-dropdown > .dropdown-item
 {
 	color:#17252A;
-    background-color: transparent;
+  background-color: #fff;
 	border: transparent;
 }
 
@@ -53,7 +53,7 @@
 .navbar-dropdown > .dropdown-item:hover, .navbar-dropdown > .dropdown-item:focus
 {
 	color: #838383;
-}
+}S
 
 .nav-pills  a
 {
@@ -78,6 +78,47 @@ body
 h1, h2, h3, h4, h5, h6
 {
 	font-family: 'Lato', sans-serif;
+}
+
+p
+{
+	font-size: 1.25em;
+}
+
+/* INDEX PAGE */
+.index-head
+{
+	background-color: #21560D;
+	color: #fff;
+	width: 100%;
+	padding: 0.5vw;
+	margin-bottom: 0.5vw;
+}
+
+.index-header
+{
+	font-size: 5em;
+}
+
+.index-block
+{
+	margin: 2.5vw 0;
+}
+
+.index-list-heading
+{
+	font-size: 1.75em;
+}
+
+.index-list-head
+{
+	font-size: 2em;
+	margin-bottom: 1vw;
+}
+
+.index-list
+{
+	margin: 0.5vw 0;
 }
 
 /* STICKY FOOTER - REQUIRED */
@@ -106,8 +147,8 @@ h1, h2, h3, h4, h5, h6
 /*  */
 .modal-header, .modal-footer
 {
-	background-color: #000;
-	color: #fff;
+	background-color: #fff;
+	color: #000;
 }
 
 .modal-header > i
@@ -125,10 +166,22 @@ h1, h2, h3, h4, h5, h6
 /*ADMIN PAGE*/
 .table
 {
-	margin: 1.5vw;
 	text-align: center;
 }
 
-.table th {
+.table th
+{
    text-align: center;
+}
+
+.admin-table-row div
+{
+	margin: 0;
+	padding: 0;
+}
+
+.back-arrow, .back-arrow:hover
+{
+	font-size: 2.5em !important;
+	text-decoration: none;
 }

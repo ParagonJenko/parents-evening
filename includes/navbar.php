@@ -3,7 +3,7 @@
 $home_page_URL = WEBURL.DOCROOT."homepage.php";
 
 // User Page URL
-$user_page_URL = WEBURL.DOCROOT."pages/core-site/account/user";
+$user_page_URL = WEBURL.DOCROOT."pages/core-site/account";
 
 // Logout Script URL
 $logout_script_URL = WEBURL.DOCROOT."scripts/core-site/account/logout.php";
@@ -21,13 +21,13 @@ $student_page_URL = WEBURL.DOCROOT."pages/parents-evening/student";
 	<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler"><span class="navbar-toggler-icon"></span></button>
 
 	<!-- Highlight a piece of text on the left of the navbar -->
-	<a class="navbar-brand" href="<?php echo $home_page_URL; ?>">The Brand</a>
+	<a class="navbar-brand" href="<?php echo $home_page_URL; ?>">Parents Evening</a>
 
 	<!-- Content of the navbar which is collapsible on smaller screens -->
 	<div class="collapse navbar-collapse" id="navbarToggler">
 
 		<ul class="navbar-nav mr-auto mt-2 mt-md-0">
-			
+
 			<li class="nav-item active">
 				<a class="nav-link" href="<?php echo $home_page_URL; ?>">Home</a>
 			</li>

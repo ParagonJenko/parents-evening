@@ -1,2 +1,2 @@
-*.ftpconfig
-*.error_log
+.ftpconfig
+error_log
